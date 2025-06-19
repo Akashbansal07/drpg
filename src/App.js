@@ -1,96 +1,39 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from './components/Navbar';
-import HomePage from './components/HomePage';
-import TutoringPage from './components/TutoringPage';
-import StudyAbroadPage from './components/StudyAbroadPage';
-import ResourcesPage from './components/ResourcesPage';
-import AboutUsPage from './components/AboutUsPage';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfService from './components/TermsOfService';
-import Footer from './components/Footer';
-import './App.css';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import PortfolioPage from './pages/PortfolioPage';
+import ContactPage from './pages/ContactPage';
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const contactSectionRef = useRef(null);
-  
-  // Define the color palette
-  const colors = {
-    lightPurple: '#BEC1F8',
-    darkPurple: '#2E2CAB',
-    neonGreen: '#D8FC44'
-  };
+function App() {
+  const [currentPage, setCurrentPage] = useState('home');
 
-  // Add an effect to scroll to top when activeTab changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [activeTab]);
-
-  // Modified setActiveTab function that also scrolls to top
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    window.scrollTo(0, 0);
-  };
-
-  // Function to handle navigation to contact section
-  const handleContactClick = () => {
-    setActiveTab('home'); // First switch to home page
-    
-    // Use setTimeout to ensure the home page is rendered before trying to scroll
-    setTimeout(() => {
-      const contactSection = document.querySelector('#contact-section');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
-
-  // Render the appropriate component based on active tab
-  const renderContent = () => {
-    switch (activeTab) {
+  const renderPage = () => {
+    switch (currentPage) {
       case 'home':
-        return <HomePage 
-                 colors={colors} 
-                 contactSectionRef={contactSectionRef} 
-                 setActiveTab={handleTabChange} 
-               />;
-      case 'tutoring':
-        return <TutoringPage colors={colors} onContactClick={handleContactClick} />;
-      case 'abroad':
-        return <StudyAbroadPage colors={colors} onContactClick={handleContactClick} />;
-      case 'resources':
-        return <ResourcesPage colors={colors} />;
+        return <HomePage />;
       case 'about':
-        return <AboutUsPage colors={colors} onContactClick={handleContactClick} />;
-      case 'privacy':
-        return <PrivacyPolicy colors={colors} />;
-      case 'terms':
-        return <TermsOfService colors={colors} />;
+        return <AboutPage />;
+      case 'services':
+        return <ServicesPage />;
+      case 'portfolio':
+        return <PortfolioPage />;
+      case 'contact':
+        return <ContactPage />;
       default:
-        return <HomePage 
-                 colors={colors} 
-                 contactSectionRef={contactSectionRef}
-                 setActiveTab={handleTabChange}
-               />;
+        return <HomePage />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar 
-        activeTab={activeTab} 
-        setActiveTab={handleTabChange} 
-        colors={colors} 
-      />
-      <main className="relative">
-        {renderContent()}
+    <div className="min-h-screen bg-gray-50">
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <main>
+        {renderPage()}
       </main>
-      <Footer 
-        colors={colors} 
-        setActiveTab={handleTabChange} 
-      />
     </div>
   );
-};
+}
 
 export default App;
