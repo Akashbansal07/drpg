@@ -111,24 +111,24 @@ const HomePage = () => {
             </div>
 
             {/* Right Side - Beautiful Form with Slide Animation */}
-            <div className={`order-2 w-full max-w-sm mx-auto lg:mx-0 lg:ml-auto transition-all duration-1000 delay-300 ${
+            <div className={`order-2 w-full max-w-xs sm:max-w-sm mx-auto lg:mx-0 lg:ml-auto transition-all duration-1000 delay-300 ${
               contentVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-20 scale-95'
             }`}>
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-3 sm:p-4 border border-pink-100 h-fit transform hover:scale-[1.02] transition-all duration-300">
-                <div className="text-center mb-3 sm:mb-4">
-                  <div className="flex items-center justify-center mb-1 sm:mb-2">
-                    <Award className="w-4 h-4 sm:w-5 sm:h-5 text-pink-600 mr-2" />
-                    <h2 className="text-sm sm:text-base lg:text-lg font-bold bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent animate-pulse">
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-2xl p-2.5 sm:p-3 lg:p-4 border border-pink-100 h-fit transform hover:scale-[1.02] transition-all duration-300">
+                <div className="text-center mb-2 sm:mb-3">
+                  <div className="flex items-center justify-center mb-1">
+                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-pink-600 mr-1.5" />
+                    <h2 className="text-xs sm:text-sm lg:text-base font-bold bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent animate-pulse">
                       Get Free Consultation
                     </h2>
                   </div>
-                  <p className="text-xs text-gray-600">Connect with our medical experts</p>
+                  <p className="text-xs text-gray-600">Connect with our experts</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
+                <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 lg:space-y-3">
                   {/* Name Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                       Name <span className="text-pink-500 animate-pulse">*</span>
                     </label>
                     <input
@@ -136,16 +136,16 @@ const HomePage = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
                       placeholder="Full name"
                       required
                     />
                   </div>
 
                   {/* Age and Gender - Combined Row */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="transform transition-all duration-300 hover:translate-x-1">
-                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                      <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                         Age <span className="text-pink-500 animate-pulse">*</span>
                       </label>
                       <input
@@ -153,21 +153,21 @@ const HomePage = () => {
                         name="age"
                         value={formData.age}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                        className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
                         placeholder="Age"
                         required
                       />
                     </div>
                     
                     <div className="transform transition-all duration-300 hover:translate-x-1">
-                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                      <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                         Gender <span className="text-pink-500 animate-pulse">*</span>
                       </label>
                       <select
                         name="gender"
                         value={formData.gender}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none bg-white hover:shadow-md focus:scale-[1.02]"
+                        className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none bg-white hover:shadow-md focus:scale-[1.02]"
                         required
                       >
                         <option value="">Select</option>
@@ -180,7 +180,7 @@ const HomePage = () => {
 
                   {/* Email Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                       Email <span className="text-pink-500 animate-pulse">*</span>
                     </label>
                     <input
@@ -188,7 +188,7 @@ const HomePage = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
                       placeholder="Email address"
                       required
                     />
@@ -196,15 +196,15 @@ const HomePage = () => {
 
                   {/* Phone Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
-                      WhatsApp Phone <span className="text-pink-500 animate-pulse">*</span>
+                    <label className="block text-xs font-semibold text-gray-700 mb-0.5">
+                      WhatsApp <span className="text-pink-500 animate-pulse">*</span>
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
                       placeholder="WhatsApp number"
                       required
                     />
@@ -212,7 +212,7 @@ const HomePage = () => {
 
                   {/* Country Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                       Country <span className="text-pink-500 animate-pulse">*</span>
                     </label>
                     <input
@@ -220,7 +220,7 @@ const HomePage = () => {
                       name="country"
                       value={formData.country}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
                       placeholder="Your country"
                       required
                     />
@@ -228,7 +228,7 @@ const HomePage = () => {
 
                   {/* Medical Problem Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                       Medical Problem <span className="text-pink-500 animate-pulse">*</span>
                     </label>
                     <textarea
@@ -236,8 +236,8 @@ const HomePage = () => {
                       value={formData.medicalProblem}
                       onChange={handleInputChange}
                       rows="2"
-                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all duration-200 outline-none resize-none hover:shadow-md focus:scale-[1.02]"
-                      placeholder="Describe your condition..."
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none resize-none hover:shadow-md focus:scale-[1.02]"
+                      placeholder="Describe condition..."
                       required
                     ></textarea>
                   </div>
@@ -245,17 +245,17 @@ const HomePage = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-2.5 px-4 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:ring-4 focus:ring-pink-200 outline-none active:scale-95 animate-pulse hover:animate-none flex items-center justify-center"
+                    className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-2 px-3 text-xs sm:text-sm rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-pink-200 outline-none active:scale-95 animate-pulse hover:animate-none flex items-center justify-center"
                   >
-                    <CheckCircle className="w-4 h-4 mr-2" />
+                    <CheckCircle className="w-3 h-3 mr-1.5" />
                     Get Free Consultation
                   </button>
                 </form>
 
-                <div className="mt-2 text-center">
+                <div className="mt-1.5 text-center">
                   <p className="text-xs text-gray-500 flex items-center justify-center">
-                    <Shield className="w-3 h-3 mr-1" />
-                    Privacy policy protected
+                    <Shield className="w-2.5 h-2.5 mr-1" />
+                    Privacy protected
                   </p>
                 </div>
               </div>
