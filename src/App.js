@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -8,6 +9,14 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [currentPage]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -27,11 +36,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <main>
+      <main className="flex-grow">
         {renderPage()}
       </main>
+      <Footer setCurrentPage={setCurrentPage} />
     </div>
   );
 }
