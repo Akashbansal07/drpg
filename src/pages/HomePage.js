@@ -1,13 +1,285 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, 
   Heart, 
   Star, 
   Award,
   CheckCircle,
-  TrendingUp
+  TrendingUp,
+  MapPin,
+  Phone,
+  Users
 } from 'lucide-react';
 
+// Import the Enhanced Medical Services Component
+import EnhancedMedicalServicesSection from './EnhancedMedicalServicesSection';
+
+// Top Hospitals Section Component (keeping your original)
+const TopHospitalsSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredHospital, setHoveredHospital] = useState(null);
+  const sectionRef = useRef(null);
+
+  const hospitals = [
+    {
+      id: 1,
+      name: "CK Birla Hospital",
+      location: "Gurugram",
+      image: "https://assets.bajajfinservhealth.in/media/doctorprofilepic/1642140810886_HospitalFacilityImages_Capture-w720-h720.webp",
+      rating: 4.8,
+      specialties: ["Cardiology", "Oncology", "Neurology"],
+      established: "2015",
+      beds: "400+"
+    },
+    {
+      id: 2,
+      name: "Metro Hospital",
+      location: "Faridabad",
+      image: "https://metrohospitalfaridabad.com/wp-content/uploads/2024/07/Metro-building.webp",
+      rating: 4.7,
+      specialties: ["Orthopedics", "Gastro", "Pediatrics"],
+      established: "2010",
+      beds: "300+"
+    },
+    {
+      id: 3,
+      name: "Medanta The Medicity",
+      location: "Gurugram",
+      image: "https://static.hospidio.com/uploads/hospital/23/medanta-themedicitygurugram-hospital.jpg.webp",
+      rating: 4.9,
+      specialties: ["Multi-Specialty", "Transplant", "Critical Care"],
+      established: "2009",
+      beds: "1250+"
+    },
+    {
+      id: 4,
+      name: "Marengo Asia Hospital",
+      location: "Faridabad",
+      image: "https://www.marengoasiahospitals.com/static/uploads/6d49269c-ac35-4828-a2fb-a5afa27e66f5-1681190737506.png",
+      rating: 4.6,
+      specialties: ["Emergency", "Surgery", "Diagnostics"],
+      established: "2018",
+      beds: "200+"
+    },
+    {
+      id: 5,
+      name: "Fortis Memorial",
+      location: "Gurugram",
+      image: "https://rawahealth.com/wp-content/uploads/2023/08/fortis-memorial-research-institute-gurgaon-1467190475-57738ccb5ab5b.jpg",
+      rating: 4.8,
+      specialties: ["Heart", "Cancer", "Kidney"],
+      established: "2001",
+      beds: "1000+"
+    },
+    {
+      id: 6,
+      name: "Sarvodaya Hospital",
+      location: "Faridabad",
+      image: "https://sdk-image2.s3.ap-south-1.amazonaws.com/small_Sarvodaya_Building_New_Image_final_8d5554a560.jpg",
+      rating: 4.5,
+      specialties: ["General", "Maternity", "Emergency"],
+      established: "2012",
+      beds: "250+"
+    }
+  ];
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section 
+      ref={sectionRef}
+      className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-br from-pink-50 via-white to-pink-100 overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-40 h-40 bg-pink-300 rounded-full -translate-x-20 -translate-y-20 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-60 h-60 bg-pink-400 rounded-full translate-x-30 translate-y-30 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-pink-200 rounded-full animate-bounce delay-500"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className={`text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <div className="flex flex-col sm:flex-row items-center justify-center mb-3 sm:mb-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg mr-0 sm:mr-4 mb-2 sm:mb-0">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-pulse" />
+            </div>
+            <div className="text-center sm:text-left">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent">
+                Top Partner Hospitals
+              </h2>
+              <p className="text-pink-600 font-medium mt-1 text-sm sm:text-base">Excellence in Healthcare</p>
+            </div>
+          </div>
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+            We partner with India's leading hospitals to provide you with world-class medical care, 
+            advanced technology, and experienced specialists all under one roof.
+          </p>
+        </div>
+
+        {/* Hospitals Grid with 3D Animation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {hospitals.map((hospital, index) => (
+            <div
+              key={hospital.id}
+              className={`group relative transform transition-all duration-700 hover:scale-105 ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0 rotate-0' 
+                  : 'opacity-0 translate-y-20 rotate-3'
+              }`}
+              style={{
+                transitionDelay: `${index * 150}ms`,
+                transformStyle: 'preserve-3d'
+              }}
+              onMouseEnter={() => setHoveredHospital(hospital.id)}
+              onMouseLeave={() => setHoveredHospital(null)}
+            >
+              {/* 3D Card Container */}
+              <div className="relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 transform ${
+                  hoveredHospital === hospital.id 
+                    ? 'shadow-2xl' 
+                    : ''
+                } hover:shadow-pink-200/50`}
+                style={{
+                  transform: hoveredHospital === hospital.id 
+                    ? 'rotateY(10deg) rotateX(5deg) translateZ(20px)' 
+                    : 'rotateY(0deg) rotateX(0deg) translateZ(0px)'
+                }}>
+                  
+                  {/* Hospital Image with Overlay */}
+                  <div className="relative h-48 sm:h-52 overflow-hidden">
+                    <img
+                      src={hospital.image}
+                      alt={hospital.name}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        e.target.src = `https://images.unsplash.com/photo-1551076805-e1869033e561?w=400&h=300&fit=crop&crop=center`;
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Floating Rating Badge */}
+                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-bold text-gray-800">{hospital.rating}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Established Badge */}
+                    <div className="absolute top-4 left-4 bg-pink-500/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg">
+                      <span className="text-xs font-semibold text-white">Est. {hospital.established}</span>
+                    </div>
+                  </div>
+
+                  {/* Hospital Info */}
+                  <div className="p-6">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">
+                        {hospital.name}
+                      </h3>
+                      <div className="flex items-center text-gray-600 mb-3">
+                        <MapPin className="w-4 h-4 mr-2 text-pink-500" />
+                        <span className="text-sm">{hospital.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Specialties */}
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-2">Specialties:</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {hospital.specialties.map((specialty, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded-full font-medium hover:bg-pink-200 transition-colors duration-200"
+                          >
+                            {specialty}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Hospital Stats */}
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                      <div className="text-center">
+                        <div className="flex items-center justify-center mb-1">
+                          <Users className="w-4 h-4 text-pink-500 mr-1" />
+                          <span className="text-lg font-bold text-gray-800">{hospital.beds}</span>
+                        </div>
+                        <p className="text-xs text-gray-600">Beds</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="flex items-center justify-center mb-1">
+                          <Award className="w-4 h-4 text-pink-500 mr-1" />
+                          <span className="text-lg font-bold text-gray-800">A+</span>
+                        </div>
+                        <p className="text-xs text-gray-600">Grade</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 3D Depth Layer */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-pink-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"></div>
+                </div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className={`absolute -top-2 -right-2 w-8 h-8 bg-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-bounce ${
+                hoveredHospital === hospital.id ? 'scale-100' : 'scale-0'
+              }`}>
+                <div className="w-full h-full rounded-full bg-pink-400 animate-ping"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA Section */}
+        <div className={`text-center mt-8 sm:mt-12 lg:mt-16 transition-all duration-1000 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <div className="bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300 mx-2 sm:mx-0">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
+              Need Help Choosing the Right Hospital?
+            </h3>
+            <p className="text-pink-100 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              Our medical experts will help you find the perfect hospital based on your condition, 
+              budget, and preferences. Get personalized recommendations today.
+            </p>
+            <button className="bg-white text-pink-600 hover:text-pink-700 font-bold py-2 sm:py-3 px-4 sm:px-6 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center mx-auto text-sm sm:text-base">
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              Speak with Our Experts
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Complete HomePage Component
 const HomePage = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -264,6 +536,12 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Top Hospitals Section */}
+      <TopHospitalsSection />
+
+      {/* Enhanced Medical Services Section - NEW COMPONENT WITH ANIMATIONS */}
+      <EnhancedMedicalServicesSection />
     </div>
   );
 };

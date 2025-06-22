@@ -38,8 +38,8 @@ const Footer = ({ setCurrentPage }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           
-          {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-2">
+          {/* Company Info - Full width on mobile */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2">
             <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
               <div className="w-8 sm:w-10 h-8 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
                 <Stethoscope className="w-4 sm:w-5 h-4 sm:h-5 text-pink-600" />
@@ -71,8 +71,9 @@ const Footer = ({ setCurrentPage }) => {
             </div>
           </div>
 
+          {/* Quick Links and Contact in 2 columns on mobile */}
           {/* Quick Links */}
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-3 sm:space-y-4 col-span-1">
             <div>
               <h4 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3 relative">
                 Quick Links
@@ -94,7 +95,7 @@ const Footer = ({ setCurrentPage }) => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-3 sm:space-y-4 col-span-1">
             <div>
               <h4 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3 relative">
                 Contact
