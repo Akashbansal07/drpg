@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import PortfolioPage from './pages/PortfolioPage';
-import ContactPage from './pages/ContactPage';
+import HospitalsPage from './pages/HospitalsPage';
+import MedicalTourismPage from './pages/MedicalTourismPage';
+import PatientJourneyPage from './pages/PatientJourneyPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -22,14 +22,14 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage />;
-      case 'about':
-        return <AboutPage />;
-      case 'services':
-        return <ServicesPage />;
-      case 'portfolio':
-        return <PortfolioPage />;
-      case 'contact':
-        return <ContactPage />;
+      case 'hospitals':
+        return <HospitalsPage />;
+      case 'medical-tourism':
+        return <MedicalTourismPage />;
+      case 'patient-journey':
+        return <PatientJourneyPage />;
+      case 'about-us':
+        return <AboutUsPage />;
       default:
         return <HomePage />;
     }

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { 
   Home, 
-  Users, 
-  Settings, 
-  Briefcase, 
-  Phone,
+  Building2, 
+  Plane, 
+  Route,
+  Users,
   Stethoscope
 } from 'lucide-react';
 
@@ -15,10 +15,10 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
   
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About', icon: Users },
-    { id: 'services', label: 'Services', icon: Settings },
-    { id: 'portfolio', label: 'Portfolio', icon: Briefcase },
-    { id: 'contact', label: 'Contact', icon: Phone }
+    { id: 'hospitals', label: 'Hospitals', icon: Building2 },
+    { id: 'medical-tourism', label: 'Medical Tourism', icon: Plane },
+    { id: 'patient-journey', label: 'Patient Journey', icon: Route },
+    { id: 'about-us', label: 'About Us', icon: Users }
   ];
 
   // Navbar entrance animation

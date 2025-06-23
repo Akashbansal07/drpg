@@ -97,20 +97,6 @@ const EnhancedMedicalServicesSection = () => {
     };
   }, []);
 
-  // Auto-rotation animation - removed since we're using classic design
-  // useEffect(() => {
-  //   if (!isPlaying) return;
-    
-  //   const interval = setInterval(() => {
-  //     setActiveCard(prev => {
-  //       const totalCards = medicalTreatments.length + comprehensiveServices.length;
-  //       return prev === null ? 1 : (prev % totalCards) + 1;
-  //     });
-  //   }, 2000);
-
-  //   return () => clearInterval(interval);
-  // }, [isPlaying, medicalTreatments.length, comprehensiveServices.length]);
-
   const FloatingParticles = () => (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
@@ -143,18 +129,23 @@ const EnhancedMedicalServicesSection = () => {
         {/* Content Container */}
         <div className="relative flex items-center space-x-4">
           
-          {/* Icon Container with White Square Background */}
-          <div className={`w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-105 p-2`}>
-            {/* White square background for PNG */}
-            <div className="w-full h-full bg-white rounded-lg flex items-center justify-center shadow-sm">
+          {/* Icon Container with White Square Background - Enhanced Size */}
+          <div className={`w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 flex-shrink-0 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-105 p-2`}>
+            {/* White square background for PNG - Enhanced padding */}
+            <div className="w-full h-full bg-white rounded-lg flex items-center justify-center shadow-sm p-1">
               <img 
                 src={service.icon} 
                 alt={service.name}
-                className="w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110 max-w-full max-h-full"
+                style={{
+                  width: 'calc(100% - 4px)',
+                  height: 'calc(100% - 4px)',
+                  objectFit: 'contain'
+                }}
                 onError={(e) => {
                   e.target.style.display = 'none';
                   const fallbackIcon = service.id <= 10 ? '❤️' : '🛡️';
-                  e.target.parentElement.innerHTML = `<div class="text-lg sm:text-xl">${fallbackIcon}</div>`;
+                  e.target.parentElement.innerHTML = `<div class="text-2xl sm:text-3xl md:text-4xl flex items-center justify-center w-full h-full">${fallbackIcon}</div>`;
                 }}
               />
             </div>
@@ -339,7 +330,6 @@ const EnhancedMedicalServicesSection = () => {
             ))}
           </div>
         </div>
-
 
       </div>
 

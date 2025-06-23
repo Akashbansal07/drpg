@@ -12,12 +12,13 @@ import {
 } from 'lucide-react';
 
 const Footer = ({ setCurrentPage }) => {
+  // Updated navigation links to match your App component's page structure
   const navigationLinks = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About us' },
-    { id: 'services', label: 'Service' },
-    { id: 'contact', label: 'Contact us' },
-    { id: 'portfolio', label: 'FAQs' }
+    { id: 'hospitals', label: 'Hospitals' },
+    { id: 'medical-tourism', label: 'Medical Tourism' },
+    { id: 'patient-journey', label: 'Patient Journey' },
+    { id: 'about-us', label: 'About Us' }
   ];
 
   const socialLinks = [
@@ -26,6 +27,15 @@ const Footer = ({ setCurrentPage }) => {
     { icon: Youtube, color: 'hover:bg-red-600', label: 'YouTube' },
     { icon: Instagram, color: 'hover:bg-pink-600', label: 'Instagram' }
   ];
+
+  const handleNavigation = (pageId) => {
+    setCurrentPage(pageId);
+    // Smooth scroll to top when navigating from footer
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <footer className="bg-gradient-to-br from-pink-800 via-pink-700 to-pink-900 text-white relative overflow-hidden">
@@ -46,7 +56,7 @@ const Footer = ({ setCurrentPage }) => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-white">Dr Purva Global</h3>
-                <p className="text-pink-200 text-xs sm:text-sm">Fearless Surgeries</p>
+                <p className="text-pink-200 text-xs sm:text-sm">Fearless Healthcare</p>
               </div>
             </div>
             
@@ -83,8 +93,8 @@ const Footer = ({ setCurrentPage }) => {
                 {navigationLinks.map((link) => (
                   <li key={link.id}>
                     <button
-                      onClick={() => setCurrentPage(link.id)}
-                      className="text-pink-200 hover:text-white text-xs sm:text-sm transition-all duration-300 hover:translate-x-1 block transform"
+                      onClick={() => handleNavigation(link.id)}
+                      className="text-pink-200 hover:text-white text-xs sm:text-sm transition-all duration-300 hover:translate-x-1 block transform hover:scale-105"
                     >
                       {link.label}
                     </button>
@@ -105,21 +115,30 @@ const Footer = ({ setCurrentPage }) => {
                 <div className="flex items-start space-x-2">
                   <MapPin className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 mt-0.5 flex-shrink-0" />
                   <div className="text-pink-100 text-xs sm:text-sm">
-                    <p>617, Sector 14, Gurgaon</p>
-                    <p>Haryana 122001</p>
+                    <p>Dr Purva Global Solutions</p>
+                    <p>(Unit of Billion Plus Enterprises)</p>
+                    <p>5th Floor, DLF Two Horizon Centre,</p>
+                    <p>DLF Phase 5, Sector 43,</p>
+                    <p>Gurugram, Haryana 122002</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <Phone className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 flex-shrink-0" />
-                  <a href="tel:+918700268640" className="text-pink-100 text-xs sm:text-sm hover:text-white transition-colors duration-300">
+                  <a 
+                    href="tel:+918700268640" 
+                    className="text-pink-100 text-xs sm:text-sm hover:text-white transition-all duration-300 hover:scale-105"
+                  >
                     +91 8700268640
                   </a>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <Mail className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 flex-shrink-0" />
-                  <a href="mailto:info@drpurvaglobal.com" className="text-pink-100 text-xs sm:text-sm hover:text-white transition-colors duration-300 break-all">
+                  <a 
+                    href="mailto:info@drpurvaglobal.com" 
+                    className="text-pink-100 text-xs sm:text-sm hover:text-white transition-all duration-300 break-all hover:scale-105"
+                  >
                     info@drpurvaglobal.com
                   </a>
                 </div>
@@ -133,24 +152,24 @@ const Footer = ({ setCurrentPage }) => {
         <div className="border-t border-pink-600 mt-6 sm:mt-8 pt-4 sm:pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
             <p className="text-pink-200 text-xs text-center sm:text-left">
-              © {new Date().getFullYear()} Billion Plus Enterprises. All Rights Reserved
+              © {new Date().getFullYear()} Dr Purva Global. All Rights Reserved
             </p>
             <div className="flex flex-wrap justify-center sm:justify-end space-x-3 sm:space-x-4 text-xs">
               <button 
-                onClick={() => setCurrentPage('contact')}
-                className="text-pink-200 hover:text-white transition-colors duration-300"
+                onClick={() => handleNavigation('about-us')}
+                className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
-                Privacy
+                Privacy Policy
               </button>
               <button 
-                onClick={() => setCurrentPage('contact')}
-                className="text-pink-200 hover:text-white transition-colors duration-300"
+                onClick={() => handleNavigation('about-us')}
+                className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
-                Terms
+                Terms of Service
               </button>
               <button 
-                onClick={() => setCurrentPage('contact')}
-                className="text-pink-200 hover:text-white transition-colors duration-300"
+                onClick={() => handleNavigation('patient-journey')}
+                className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Support
               </button>
