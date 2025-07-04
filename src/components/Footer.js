@@ -123,15 +123,7 @@ const Footer = ({ setCurrentPage }) => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 flex-shrink-0" />
-                  <a 
-                    href="tel:+918700268640" 
-                    className="text-pink-100 text-xs sm:text-sm hover:text-white transition-all duration-300 hover:scale-105"
-                  >
-                    +91 8700268640
-                  </a>
-                </div>
+                
 
                 <div className="flex items-center space-x-2">
                   <Mail className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 flex-shrink-0" />

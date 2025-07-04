@@ -8,11 +8,18 @@ import {
   TrendingUp,
   MapPin,
   Phone,
-  Users
+  Users,
+  ChevronDown
 } from 'lucide-react';
+
+// Import countries data
+import { countries, defaultCountry } from './countries.js';
 
 // Import the Enhanced Medical Services Component
 import EnhancedMedicalServicesSection from './EnhancedMedicalServicesSection';
+
+// Import the Doctors Section Component
+import DoctorsSection from './DoctorsSection';
 
 // Top Hospitals Section Component (keeping your original)
 const TopHospitalsSection = () => {
@@ -54,7 +61,7 @@ const TopHospitalsSection = () => {
     {
       id: 4,
       name: "Marengo Asia Hospital",
-      location: "Faridabad",
+      location: "Faridabad, Gurugram",
       image: "https://www.marengoasiahospitals.com/static/uploads/6d49269c-ac35-4828-a2fb-a5afa27e66f5-1681190737506.png",
       rating: 4.6,
       specialties: ["Emergency", "Surgery", "Diagnostics"],
@@ -291,8 +298,15 @@ const HomePage = () => {
     medicalProblem: ''
   });
 
+  // Country selector state
+  const [selectedCountry, setSelectedCountry] = useState(defaultCountry);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [countrySearchTerm, setCountrySearchTerm] = useState('');
+
   const [isVisible, setIsVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
+
+  const countryDropdownRef = useRef(null);
 
   // Animation triggers
   useEffect(() => {
@@ -305,6 +319,20 @@ const HomePage = () => {
     };
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
+        setIsCountryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -313,11 +341,39 @@ const HomePage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+  const handleSubmit = () => {
+    // Validation
+    if (!formData.name || !formData.age || !formData.gender || !formData.email || !formData.phone || !formData.country || !formData.medicalProblem) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    // Include selected country phone code with the phone number
+    const formDataWithCountry = {
+      ...formData,
+      phone: `${selectedCountry.phoneCode} ${formData.phone}`,
+      selectedCountry: selectedCountry.name
+    };
+    console.log('Form submitted:', formDataWithCountry);
+    alert('Thank you! We will contact you soon.');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      age: '',
+      gender: '',
+      email: '',
+      phone: '',
+      country: '',
+      medicalProblem: ''
+    });
   };
+
+  // Filter countries based on search term
+  const filteredCountries = countries.filter(country =>
+    country.name.toLowerCase().includes(countrySearchTerm.toLowerCase()) ||
+    country.phoneCode.includes(countrySearchTerm)
+  );
 
   return (
     <div className="min-h-screen">
@@ -397,7 +453,7 @@ const HomePage = () => {
                   <p className="text-xs text-gray-600">Connect with our experts</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 lg:space-y-3">
+                <div className="space-y-1.5 sm:space-y-2 lg:space-y-3">
                   {/* Name Field */}
                   <div className="transform transition-all duration-300 hover:translate-x-1">
                     <label className="block text-xs font-semibold text-gray-700 mb-0.5">
@@ -466,20 +522,72 @@ const HomePage = () => {
                     />
                   </div>
 
-                  {/* Phone Field */}
-                  <div className="transform transition-all duration-300 hover:translate-x-1">
+                  {/* Phone Field with Country Selector */}
+                  <div className="transform transition-all duration-300 hover:translate-x-1 relative z-[100]">
                     <label className="block text-xs font-semibold text-gray-700 mb-0.5">
                       WhatsApp <span className="text-pink-500 animate-pulse">*</span>
                     </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
-                      placeholder="WhatsApp number"
-                      required
-                    />
+                    <div className="relative flex">
+                      {/* Country Selector */}
+                      <div className="relative z-[101]" ref={countryDropdownRef}>
+                        <button
+                          type="button"
+                          onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                          className="flex items-center px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-l-md border-2 border-pink-100 border-r-0 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none bg-white hover:shadow-md focus:scale-[1.02] min-w-[80px] relative z-[102]"
+                        >
+                          <span className="mr-1">{selectedCountry.flag}</span>
+                          <span className="text-xs font-medium mr-1">{selectedCountry.phoneCode}</span>
+                          <ChevronDown className="w-3 h-3 text-gray-400" />
+                        </button>
+                        
+                        {/* Country Dropdown */}
+                        {isCountryDropdownOpen && (
+                          <div className="absolute top-full left-0 w-72 bg-white border border-pink-200 rounded-lg shadow-2xl z-[9999] max-h-60 overflow-hidden">
+                            {/* Search Input */}
+                            <div className="p-2 border-b border-pink-100">
+                              <input
+                                type="text"
+                                placeholder="Search countries..."
+                                value={countrySearchTerm}
+                                onChange={(e) => setCountrySearchTerm(e.target.value)}
+                                className="w-full px-2 py-1 text-xs border border-pink-200 rounded outline-none focus:border-pink-400"
+                              />
+                            </div>
+                            
+                            {/* Country List */}
+                            <div className="max-h-48 overflow-y-auto">
+                              {filteredCountries.map((country) => (
+                                <button
+                                  key={country.code}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedCountry(country);
+                                    setIsCountryDropdownOpen(false);
+                                    setCountrySearchTerm('');
+                                  }}
+                                  className="w-full flex items-center px-3 py-2 text-xs hover:bg-pink-50 transition-colors duration-200 text-left"
+                                >
+                                  <span className="mr-2">{country.flag}</span>
+                                  <span className="flex-1 text-gray-700">{country.name}</span>
+                                  <span className="text-gray-500 font-medium">{country.phoneCode}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Phone Number Input */}
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="flex-1 px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm rounded-r-md border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none hover:shadow-md focus:scale-[1.02]"
+                        placeholder="WhatsApp number"
+                        required
+                      />
+                    </div>
                   </div>
 
                   {/* Country Field */}
@@ -516,13 +624,14 @@ const HomePage = () => {
 
                   {/* Submit Button */}
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={handleSubmit}
                     className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-2 px-3 text-xs sm:text-sm rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-pink-200 outline-none active:scale-95 animate-pulse hover:animate-none flex items-center justify-center"
                   >
                     <CheckCircle className="w-3 h-3 mr-1.5" />
                     Get Free Consultation
                   </button>
-                </form>
+                </div>
 
                 <div className="mt-1.5 text-center">
                   <p className="text-xs text-gray-500 flex items-center justify-center">
@@ -539,6 +648,9 @@ const HomePage = () => {
 
       {/* Top Hospitals Section */}
       <TopHospitalsSection />
+
+      {/* Doctors Section */}
+      <DoctorsSection />
 
       {/* Enhanced Medical Services Section - NEW COMPONENT WITH ANIMATIONS */}
       <EnhancedMedicalServicesSection />

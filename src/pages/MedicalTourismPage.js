@@ -25,51 +25,45 @@ const MedicalTourismPage = () => {
   const tourDestinations = [
     {
       id: 1,
-      name: "Taj Mahal, Agra",
-      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGFqJTIwbWFoYWx8ZW58MHx8MHx8fDA%3D",
-      description: "Experience the wonder of the world's most beautiful monument to love",
-      duration: "Full Day",
-      highlights: ["Sunrise viewing", "Guided tour", "Local handicrafts", "Mughlai cuisine"]
+      name: "Amritsar - Golden Temple",
+      image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&auto=format&fit=crop&q=60",
+      description: "Visit the spiritual heart of Sikhism with its magnificent Golden Temple and witness the community kitchen feeding thousands daily",
+      highlights: ["Golden Temple visit", "Jallianwala Bagh", "Wagah Border ceremony", "Authentic Punjabi langar"]
     },
     {
       id: 2,
-      name: "Golden Triangle",
-      image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=900&auto=format&fit=crop&q=60",
-      description: "Delhi, Agra, and Jaipur - India's most iconic cultural circuit",
-      duration: "3-5 Days",
-      highlights: ["Red Fort Delhi", "Taj Mahal", "Amber Fort", "Local markets"]
+      name: "Delhi - Capital Heritage",
+      image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&auto=format&fit=crop&q=60",
+      description: "Explore India's vibrant capital with its blend of Mughal architecture, colonial history, and modern urban culture",
+      highlights: ["Red Fort & Qutub Minar", "India Gate", "Humayun's Tomb", "Chandni Chowk bazaar"]
     },
     {
       id: 3,
-      name: "Kerala Backwaters",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&auto=format&fit=crop&q=60",
-      description: "Serene houseboat experience through tropical waterways",
-      duration: "2-3 Days",
-      highlights: ["Houseboat stay", "Coconut groves", "Ayurvedic spa", "Seafood cuisine"]
+      name: "Jaipur - Pink City",
+      image: "https://images.unsplash.com/photo-1599661046827-dacde645b08b?w=900&auto=format&fit=crop&q=60",
+      description: "Experience the royal grandeur of Rajasthan's Pink City with its magnificent palaces, forts, and vibrant culture",
+      highlights: ["Amber Fort", "City Palace", "Hawa Mahal", "Local handicrafts"]
     },
     {
       id: 4,
-      name: "Rajasthan Heritage",
-      image: "https://images.unsplash.com/photo-1599661046827-dacde645b08b?w=900&auto=format&fit=crop&q=60",
-      description: "Royal palaces, desert safaris, and vibrant culture",
-      duration: "4-6 Days",
-      highlights: ["Palace tours", "Camel safari", "Folk performances", "Rajasthani thali"]
+      name: "Agra - Taj Mahal",
+      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=900&auto=format&fit=crop&q=60",
+      description: "Marvel at the eternal symbol of love - the Taj Mahal, and explore the rich Mughal heritage of this historic city",
+      highlights: ["Taj Mahal sunrise", "Agra Fort", "Mehtab Bagh", "Mughlai cuisine"]
     },
     {
       id: 5,
-      name: "Spiritual Varanasi",
-      image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=900&auto=format&fit=crop&q=60",
-      description: "Ancient spiritual city on the banks of River Ganges",
-      duration: "2-3 Days",
-      highlights: ["Ganga Aarti", "Boat ride", "Temple visits", "Street food tour"]
+      name: "Ajmer - Spiritual Center",
+      image: "https://images.unsplash.com/photo-1582549938816-3d61aa56ba72?w=900&auto=format&fit=crop&q=60",
+      description: "Experience the spiritual essence at the revered Ajmer Sharif Dargah, a place of unity and divine blessings",
+      highlights: ["Ajmer Sharif Dargah", "Ana Sagar Lake", "Taragarh Fort", "Sufi music experience"]
     },
     {
       id: 6,
-      name: "Goa Beaches",
-      image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=900&auto=format&fit=crop&q=60",
-      description: "Relax on pristine beaches with Portuguese heritage",
-      duration: "3-4 Days",
-      highlights: ["Beach relaxation", "Water sports", "Churches", "Seafood delicacies"]
+      name: "Rishikesh - Yoga Capital",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&auto=format&fit=crop&q=60",
+      description: "Find peace and spiritual awakening in the world's yoga capital, nestled in the foothills of the Himalayas",
+      highlights: ["Ganga Aarti ceremony", "Laxman Jhula", "Yoga ashrams", "River rafting"]
     }
   ];
 
@@ -169,36 +163,25 @@ const MedicalTourismPage = () => {
             {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            {/* Duration Badge */}
-            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 sm:px-4 sm:py-2 shadow-lg">
-              <div className="flex items-center space-x-1">
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-pink-400" />
-                <span className="text-xs sm:text-sm font-bold text-gray-800">{destination.duration}</span>
-              </div>
-            </div>
 
-            {/* Free Badge */}
-            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-gradient-to-r from-green-400 to-green-500 rounded-full px-2.5 py-1 sm:px-3 sm:py-1 shadow-lg">
-              <span className="text-xs font-semibold text-white">Complimentary</span>
-            </div>
           </div>
 
           {/* Destination Info */}
-          <div className="p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-500 transition-colors duration-300">
+          <div className="p-3 sm:p-4 md:p-6">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-500 transition-colors duration-300">
               {destination.name}
             </h3>
-            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">{destination.description}</p>
+            <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4">{destination.description}</p>
 
             {/* Highlights */}
             <div className="mb-4 sm:mb-6">
-              <h4 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3 flex items-center">
+              <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 mb-2 sm:mb-3 flex items-center">
                 <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-pink-400" />
                 Tour Highlights
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+              <div className="grid grid-cols-1 gap-1.5 sm:gap-2">
                 {destination.highlights.map((highlight, idx) => (
-                  <div key={idx} className="flex items-center text-xs text-gray-600">
+                  <div key={idx} className="flex items-center text-xs sm:text-sm text-gray-600">
                     <CheckCircle className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-green-500 mr-1.5 sm:mr-2 flex-shrink-0" />
                     {highlight}
                   </div>
@@ -206,12 +189,7 @@ const MedicalTourismPage = () => {
               </div>
             </div>
 
-            {/* Learn More Button */}
-            <button className="w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center bg-gradient-to-r from-pink-400 to-pink-500 text-white shadow-md hover:shadow-lg group text-sm sm:text-base">
-              <Camera className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-              Explore This Destination
-              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+
           </div>
         </div>
       </div>
@@ -246,7 +224,7 @@ const MedicalTourismPage = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center mb-6 sm:mb-8">
               <Plane className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white mr-0 sm:mr-4 mb-2 sm:mb-0 drop-shadow-lg" />
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white drop-shadow-lg">
-                Medical Tourism
+                Local Tourism
               </h1>
             </div>
             
@@ -281,7 +259,7 @@ const MedicalTourismPage = () => {
                 </h2>
               </div>
               <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 sm:px-0">
-                After your successful treatment, explore India's wonders with our complimentary tour package
+                After your successful treatment, explore India's cultural treasures with our complimentary local tour package
               </p>
             </div>
             

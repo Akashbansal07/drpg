@@ -42,24 +42,28 @@ const EnhancedMedicalServicesSection = () => {
 
   // Your actual medical treatments data with icons and light backgrounds for better contrast
   const medicalTreatments = [
-    { id: 1, name: "Weight Loss Surgery", icon: icon1, color: "from-purple-100 to-pink-100", bgColor: "bg-purple-50" },
-    { id: 2, name: "Neurology", icon: icon2, color: "from-blue-100 to-cyan-100", bgColor: "bg-blue-50" },
-    { id: 3, name: "IVF & Fertility", icon: icon3, color: "from-green-100 to-emerald-100", bgColor: "bg-green-50" },
-    { id: 4, name: "Cosmetic Surgery", icon: icon4, color: "from-pink-100 to-rose-100", bgColor: "bg-pink-50" },
-    { id: 5, name: "Gynecology", icon: icon5, color: "from-indigo-100 to-purple-100", bgColor: "bg-indigo-50" },
-    { id: 6, name: "Bone Marrow Transplant", icon: icon6, color: "from-red-100 to-pink-100", bgColor: "bg-red-50" },
-    { id: 7, name: "Kidney & Liver Transplant", icon: icon7, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
     { id: 8, name: "Cardiology", icon: icon8, color: "from-red-100 to-rose-100", bgColor: "bg-red-50" },
     { id: 9, name: "Oncology", icon: icon9, color: "from-gray-100 to-gray-200", bgColor: "bg-gray-50" },
-    { id: 10, name: "Orthopedics", icon: icon10, color: "from-teal-100 to-cyan-100", bgColor: "bg-teal-50" }
+    { id: 2, name: "Neurology", icon: icon2, color: "from-blue-100 to-cyan-100", bgColor: "bg-blue-50" },
+    { id: 5, name: "Gynecology", icon: icon5, color: "from-indigo-100 to-purple-100", bgColor: "bg-indigo-50" },
+    { id: 10, name: "Orthopedics", icon: icon10, color: "from-teal-100 to-cyan-100", bgColor: "bg-teal-50" },
+     
+    { id: 1, name: "Weight Loss Surgery", icon: icon1, color: "from-purple-100 to-pink-100", bgColor: "bg-purple-50" },
+    { id: 3, name: "IVF & Fertility", icon: icon3, color: "from-green-100 to-emerald-100", bgColor: "bg-green-50" },
+    { id: 4, name: "Cosmetic Surgery", icon: icon4, color: "from-pink-100 to-rose-100", bgColor: "bg-pink-50" },
+    { id: 6, name: "Bone Marrow Transplant", icon: icon6, color: "from-red-100 to-pink-100", bgColor: "bg-red-50" },
+    { id: 7, name: "Kidney & Liver Transplant", icon: icon7, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
+    
+    
   ];
 
   const comprehensiveServices = [
-    { id: 11, name: "Post Surgery Stay", icon: icon11, color: "from-amber-100 to-orange-100", bgColor: "bg-amber-50" },
     { id: 12, name: "Visa Assistance", icon: icon12, color: "from-violet-100 to-purple-100", bgColor: "bg-violet-50" },
-    { id: 13, name: "Hospital Buddy", icon: icon13, color: "from-emerald-100 to-teal-100", bgColor: "bg-emerald-50" },
+    { id: 15, name: "Translator Services", icon: icon15, color: "from-rose-100 to-pink-100", bgColor: "bg-rose-50" },
     { id: 14, name: "Local SIM Card", icon: icon14, color: "from-sky-100 to-blue-100", bgColor: "bg-sky-50" },
-    { id: 15, name: "Translator Services", icon: icon15, color: "from-rose-100 to-pink-100", bgColor: "bg-rose-50" }
+    { id: 13, name: "Hospital Buddy", icon: icon13, color: "from-emerald-100 to-teal-100", bgColor: "bg-emerald-50" },
+     
+    { id: 11, name: "Post Surgery Stay", icon: icon11, color: "from-amber-100 to-orange-100", bgColor: "bg-amber-50" },
   ];
 
   // Mouse tracking for parallax effect

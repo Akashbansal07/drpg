@@ -5,7 +5,9 @@ import {
   Plane, 
   Route,
   Users,
-  Stethoscope
+  Stethoscope,
+  HeartHandshake,
+  DollarSign
 } from 'lucide-react';
 
 const Navbar = ({ currentPage, setCurrentPage }) => {
@@ -16,7 +18,9 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'hospitals', label: 'Hospitals', icon: Building2 },
-    { id: 'medical-tourism', label: 'Medical Tourism', icon: Plane },
+    { id: 'rehab', label: 'Rehab', icon: HeartHandshake },
+    { id: 'pricing', label: 'Pricing', icon: DollarSign },
+    { id: 'medical-tourism', label: 'Local Tourism', icon: Plane },
     { id: 'patient-journey', label: 'Patient Journey', icon: Route },
     { id: 'about-us', label: 'About Us', icon: Users }
   ];

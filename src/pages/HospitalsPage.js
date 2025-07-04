@@ -63,7 +63,7 @@ const HospitalsPage = () => {
     {
       id: 4,
       name: "Marengo Asia Hospital",
-      location: "Faridabad",
+      location: "Faridabad, Gurugram",
       image: "https://www.marengoasiahospitals.com/static/uploads/6d49269c-ac35-4828-a2fb-a5afa27e66f5-1681190737506.png",
       rating: 4.6,
       specialties: ["Emergency", "Surgery", "Diagnostics"],

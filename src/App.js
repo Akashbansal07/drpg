@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import HospitalsPage from './pages/HospitalsPage';
 import MedicalTourismPage from './pages/MedicalTourismPage';
 import PatientJourneyPage from './pages/PatientJourneyPage';
+import RehabPage from './pages/RehabPage';
+import PricingPage from './pages/PricingPage';
 import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
@@ -28,6 +30,10 @@ function App() {
         return <MedicalTourismPage />;
       case 'patient-journey':
         return <PatientJourneyPage />;
+      case 'rehab':
+        return <RehabPage />;
+      case 'pricing':
+        return <PricingPage />;
       case 'about-us':
         return <AboutUsPage />;
       default:
