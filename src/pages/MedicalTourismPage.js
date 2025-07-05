@@ -26,7 +26,7 @@ const MedicalTourismPage = () => {
     {
       id: 1,
       name: "Amritsar - Golden Temple",
-      image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&auto=format&fit=crop&q=60",
+      image: "https://plus.unsplash.com/premium_photo-1697730331435-92e07494db43?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description: "Visit the spiritual heart of Sikhism with its magnificent Golden Temple and witness the community kitchen feeding thousands daily",
       highlights: ["Golden Temple visit", "Jallianwala Bagh", "Wagah Border ceremony", "Authentic Punjabi langar"]
     },
@@ -40,7 +40,7 @@ const MedicalTourismPage = () => {
     {
       id: 3,
       name: "Jaipur - Pink City",
-      image: "https://images.unsplash.com/photo-1599661046827-dacde645b08b?w=900&auto=format&fit=crop&q=60",
+      image: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8amFpcHVyfGVufDB8fDB8fHww",
       description: "Experience the royal grandeur of Rajasthan's Pink City with its magnificent palaces, forts, and vibrant culture",
       highlights: ["Amber Fort", "City Palace", "Hawa Mahal", "Local handicrafts"]
     },
@@ -54,7 +54,7 @@ const MedicalTourismPage = () => {
     {
       id: 5,
       name: "Ajmer - Spiritual Center",
-      image: "https://images.unsplash.com/photo-1582549938816-3d61aa56ba72?w=900&auto=format&fit=crop&q=60",
+      image: "https://images.unsplash.com/photo-1646559292795-e5efd20c008b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description: "Experience the spiritual essence at the revered Ajmer Sharif Dargah, a place of unity and divine blessings",
       highlights: ["Ajmer Sharif Dargah", "Ana Sagar Lake", "Taragarh Fort", "Sufi music experience"]
     },
