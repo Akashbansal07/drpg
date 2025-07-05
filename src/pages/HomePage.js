@@ -21,7 +21,7 @@ import EnhancedMedicalServicesSection from './EnhancedMedicalServicesSection';
 // Import the Doctors Section Component
 import DoctorsSection from './DoctorsSection';
 
-// Top Hospitals Section Component (keeping your original)
+// Top Hospitals Section Component (updated)
 const TopHospitalsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredHospital, setHoveredHospital] = useState(null);
@@ -33,60 +33,42 @@ const TopHospitalsSection = () => {
       name: "CK Birla Hospital",
       location: "Gurugram",
       image: "https://assets.bajajfinservhealth.in/media/doctorprofilepic/1642140810886_HospitalFacilityImages_Capture-w720-h720.webp",
-      rating: 4.8,
-      specialties: ["Cardiology", "Oncology", "Neurology"],
-      established: "2015",
-      beds: "400+"
+      established: "2015"
     },
     {
       id: 2,
       name: "Metro Hospital",
       location: "Faridabad",
       image: "https://metrohospitalfaridabad.com/wp-content/uploads/2024/07/Metro-building.webp",
-      rating: 4.7,
-      specialties: ["Orthopedics", "Gastro", "Pediatrics"],
-      established: "2010",
-      beds: "300+"
+      established: "2010"
     },
     {
       id: 3,
       name: "Medanta The Medicity",
       location: "Gurugram",
       image: "https://static.hospidio.com/uploads/hospital/23/medanta-themedicitygurugram-hospital.jpg.webp",
-      rating: 4.9,
-      specialties: ["Multi-Specialty", "Transplant", "Critical Care"],
-      established: "2009",
-      beds: "1250+"
+      established: "2009"
     },
     {
       id: 4,
       name: "Marengo Asia Hospital",
       location: "Faridabad, Gurugram",
       image: "https://www.marengoasiahospitals.com/static/uploads/6d49269c-ac35-4828-a2fb-a5afa27e66f5-1681190737506.png",
-      rating: 4.6,
-      specialties: ["Emergency", "Surgery", "Diagnostics"],
-      established: "2018",
-      beds: "200+"
+      established: "2018"
     },
     {
       id: 5,
       name: "Fortis Memorial",
       location: "Gurugram",
       image: "https://rawahealth.com/wp-content/uploads/2023/08/fortis-memorial-research-institute-gurgaon-1467190475-57738ccb5ab5b.jpg",
-      rating: 4.8,
-      specialties: ["Heart", "Cancer", "Kidney"],
-      established: "2001",
-      beds: "1000+"
+      established: "2001"
     },
     {
       id: 6,
       name: "Sarvodaya Hospital",
       location: "Faridabad",
       image: "https://sdk-image2.s3.ap-south-1.amazonaws.com/small_Sarvodaya_Building_New_Image_final_8d5554a560.jpg",
-      rating: 4.5,
-      specialties: ["General", "Maternity", "Emergency"],
-      established: "2012",
-      beds: "250+"
+      established: "2012"
     }
   ];
 
@@ -188,14 +170,6 @@ const TopHospitalsSection = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
-                    {/* Floating Rating Badge */}
-                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg transform transition-all duration-300 group-hover:scale-110">
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-bold text-gray-800">{hospital.rating}</span>
-                      </div>
-                    </div>
-                    
                     {/* Established Badge */}
                     <div className="absolute top-4 left-4 bg-pink-500/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg">
                       <span className="text-xs font-semibold text-white">Est. {hospital.established}</span>
@@ -208,42 +182,9 @@ const TopHospitalsSection = () => {
                       <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">
                         {hospital.name}
                       </h3>
-                      <div className="flex items-center text-gray-600 mb-3">
+                      <div className="flex items-center text-gray-600">
                         <MapPin className="w-4 h-4 mr-2 text-pink-500" />
                         <span className="text-sm">{hospital.location}</span>
-                      </div>
-                    </div>
-
-                    {/* Specialties */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-gray-700 mb-2">Specialties:</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {hospital.specialties.map((specialty, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded-full font-medium hover:bg-pink-200 transition-colors duration-200"
-                          >
-                            {specialty}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Hospital Stats */}
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-                      <div className="text-center">
-                        <div className="flex items-center justify-center mb-1">
-                          <Users className="w-4 h-4 text-pink-500 mr-1" />
-                          <span className="text-lg font-bold text-gray-800">{hospital.beds}</span>
-                        </div>
-                        <p className="text-xs text-gray-600">Beds</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="flex items-center justify-center mb-1">
-                          <Award className="w-4 h-4 text-pink-500 mr-1" />
-                          <span className="text-lg font-bold text-gray-800">A+</span>
-                        </div>
-                        <p className="text-xs text-gray-600">Grade</p>
                       </div>
                     </div>
                   </div>
@@ -261,25 +202,6 @@ const TopHospitalsSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom CTA Section */}
-        <div className={`text-center mt-8 sm:mt-12 lg:mt-16 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <div className="bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300 mx-2 sm:mx-0">
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
-              Need Help Choosing the Right Hospital?
-            </h3>
-            <p className="text-pink-100 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              Our medical experts will help you find the perfect hospital based on your condition, 
-              budget, and preferences. Get personalized recommendations today.
-            </p>
-            <button className="bg-white text-pink-600 hover:text-pink-700 font-bold py-2 sm:py-3 px-4 sm:px-6 lg:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center mx-auto text-sm sm:text-base">
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Speak with Our Experts
-            </button>
-          </div>
         </div>
       </div>
     </section>

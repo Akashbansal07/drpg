@@ -8,13 +8,8 @@ import {
   Gift,
   Heart,
   Star,
-  Clock,
   Shield,
   CheckCircle,
-  ArrowRight,
-  Calendar,
-  Users,
-  Globe,
   Car
 } from 'lucide-react';
 
@@ -395,33 +390,6 @@ const MedicalTourismPage = () => {
                   <p className="text-pink-100 text-xs sm:text-sm">{step.description}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-12 sm:py-16 md:py-20">
-          <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
-            <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white relative overflow-hidden mx-2 sm:mx-0">
-              
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
-                Ready for Treatment + Adventure?
-              </h2>
-              <p className="text-pink-100 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-                Get world-class medical treatment and explore incredible India - all in one journey. 
-                Your tour is our complimentary gift to celebrate your recovery!
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                <button className="bg-white text-pink-600 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg text-sm sm:text-base">
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-                  Start Your Medical Journey
-                </button>
-                <button className="border-2 border-white text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base">
-                  <Plane className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-                  Plan Your Tour
-                </button>
-              </div>
             </div>
           </div>
         </section>

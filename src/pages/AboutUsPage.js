@@ -3,7 +3,6 @@ import {
   Heart, 
   Award, 
   Users, 
-  Star,
   Shield,
   CheckCircle,
   Quote,
@@ -11,8 +10,6 @@ import {
   BookOpen,
   Trophy,
   MapPin,
-  Phone,
-  Mail,
   Calendar,
   Activity
 } from 'lucide-react';
@@ -341,18 +338,6 @@ const AboutUsPage = () => {
                         ))}
                       </div>
                     </div>
-
-                    {/* Contact Info */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                      <button className="flex-1 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm">
-                        <Phone className="w-4 h-4 mr-2" />
-                        Contact Dr. Purva
-                      </button>
-                      <button className="flex-1 border-2 border-pink-400 text-pink-600 font-semibold py-2.5 px-4 rounded-lg hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm">
-                        <Mail className="w-4 h-4 mr-2" />
-                        Send Message
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -407,37 +392,6 @@ const AboutUsPage = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Partnership Section */}
-        <section className="py-12 sm:py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white text-center">
-              <div className="flex items-center justify-center mb-6">
-                <Shield className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white mr-4" />
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-                  Strategic Partnership
-                </h2>
-              </div>
-              
-              <p className="text-pink-100 text-sm sm:text-base md:text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
-                In a strategic move to enhance service delivery and broaden reach, the Yes Plus Wellness Store has 
-                partnered with <span className="font-bold text-white">Tata 1mg as a Health Partner</span>. This collaboration 
-                enables the store to leverage Tata 1mg's robust platform for order processing and delivery in Gurgaon.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                <button className="bg-white text-pink-600 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg text-sm sm:text-base">
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-                  Start Your Journey
-                </button>
-                <button className="border-2 border-white text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base">
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-                  Get Consultation
-                </button>
               </div>
             </div>
           </div>
