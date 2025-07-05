@@ -25,6 +25,7 @@ import DoctorsSection from './DoctorsSection';
 const TopHospitalsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredHospital, setHoveredHospital] = useState(null);
+  const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef(null);
 
   const hospitals = [
@@ -69,8 +70,18 @@ const TopHospitalsSection = () => {
       location: "Faridabad",
       image: "https://sdk-image2.s3.ap-south-1.amazonaws.com/small_Sarvodaya_Building_New_Image_final_8d5554a560.jpg",
       established: "2012"
+    },
+    {
+      id: 7,
+      name: "Narayana Health",
+      location: "Gurugram",
+      image: "https://content.jdmagicbox.com/v2/comp/bangalore/x4/080PXX80.XX80.160511174017.Z4X4/catalogue/narayana-health-city-bommasandra-industrial-area-bangalore-ent-doctors-2rf7dcp.jpg",
+      established: "2008"
     }
   ];
+
+  // Show only first 6 hospitals initially
+  const displayedHospitals = showAll ? hospitals : hospitals.slice(0, 6);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -130,7 +141,7 @@ const TopHospitalsSection = () => {
 
         {/* Hospitals Grid with 3D Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {hospitals.map((hospital, index) => (
+          {displayedHospitals.map((hospital, index) => (
             <div
               key={hospital.id}
               className={`group relative transform transition-all duration-700 hover:scale-105 ${
@@ -203,6 +214,36 @@ const TopHospitalsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {!showAll && hospitals.length > 6 && (
+          <div className={`text-center mt-8 sm:mt-12 lg:mt-16 transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <button
+              onClick={() => setShowAll(true)}
+              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:ring-4 focus:ring-pink-200 outline-none active:scale-95 flex items-center mx-auto shadow-lg"
+            >
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Load More Hospitals
+            </button>
+          </div>
+        )}
+
+        {/* Show Less Button */}
+        {showAll && (
+          <div className={`text-center mt-8 sm:mt-12 lg:mt-16 transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <button
+              onClick={() => setShowAll(false)}
+              className="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:ring-4 focus:ring-gray-200 outline-none active:scale-95 flex items-center mx-auto shadow-lg"
+            >
+              <ChevronDown className="w-5 h-5 mr-2 rotate-180" />
+              Show Less
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -263,7 +304,7 @@ const HomePage = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Validation
     if (!formData.name || !formData.age || !formData.gender || !formData.email || !formData.phone || !formData.country || !formData.medicalProblem) {
       alert('Please fill in all required fields');
@@ -274,21 +315,64 @@ const HomePage = () => {
     const formDataWithCountry = {
       ...formData,
       phone: `${selectedCountry.phoneCode} ${formData.phone}`,
-      selectedCountry: selectedCountry.name
+      selectedCountry: selectedCountry.name,
+      timestamp: new Date().toLocaleString()
     };
-    console.log('Form submitted:', formDataWithCountry);
-    alert('Thank you! We will contact you soon.');
-    
-    // Reset form
-    setFormData({
-      name: '',
-      age: '',
-      gender: '',
-      email: '',
-      phone: '',
-      country: '',
-      medicalProblem: ''
-    });
+
+    try {
+      // Create a hidden form and submit it (this bypasses CORS completely)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://script.google.com/macros/s/AKfycbxPb38FiOhoVaEHTAxYuNxId9-4ykqzoANuFxrdnyAcPYk3eDTc8Q0YdYsd0CbXNzPiag/exec';
+      form.target = 'hidden_iframe';
+      form.style.display = 'none';
+
+      // Create hidden iframe to catch the response
+      let iframe = document.getElementById('hidden_iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'hidden_iframe';
+        iframe.name = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      // Add form data as hidden inputs
+      Object.keys(formDataWithCountry).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = formDataWithCountry[key];
+        form.appendChild(input);
+      });
+
+      // Add form to page and submit
+      document.body.appendChild(form);
+      form.submit();
+      
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(form);
+      }, 1000);
+
+      // Show success message
+      alert('Thank you! We will contact you soon.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        age: '',
+        gender: '',
+        email: '',
+        phone: '',
+        country: '',
+        medicalProblem: ''
+      });
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your form. Please try again.');
+    }
   };
 
   // Filter countries based on search term

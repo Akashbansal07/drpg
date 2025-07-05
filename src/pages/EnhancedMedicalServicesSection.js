@@ -33,6 +33,7 @@ import icon12 from '../utils/12.png';
 import icon13 from '../utils/13.png';
 import icon14 from '../utils/14.png';
 import icon15 from '../utils/15.png';
+import icon16 from '../utils/16.png';
 
 // Enhanced Medical Services Section Component with Classic Animations
 const EnhancedMedicalServicesSection = () => {
@@ -53,8 +54,6 @@ const EnhancedMedicalServicesSection = () => {
     { id: 4, name: "Cosmetic Surgery", icon: icon4, color: "from-pink-100 to-rose-100", bgColor: "bg-pink-50" },
     { id: 6, name: "Bone Marrow Transplant", icon: icon6, color: "from-red-100 to-pink-100", bgColor: "bg-red-50" },
     { id: 7, name: "Kidney & Liver Transplant", icon: icon7, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
-    
-    
   ];
 
   const comprehensiveServices = [
@@ -62,8 +61,8 @@ const EnhancedMedicalServicesSection = () => {
     { id: 15, name: "Translator Services", icon: icon15, color: "from-rose-100 to-pink-100", bgColor: "bg-rose-50" },
     { id: 14, name: "Local SIM Card", icon: icon14, color: "from-sky-100 to-blue-100", bgColor: "bg-sky-50" },
     { id: 13, name: "Hospital Buddy", icon: icon13, color: "from-emerald-100 to-teal-100", bgColor: "bg-emerald-50" },
-     
     { id: 11, name: "Post Surgery Stay", icon: icon11, color: "from-amber-100 to-orange-100", bgColor: "bg-amber-50" },
+    { id: 16, name: "Transportation Service", icon: icon16, color: "from-cyan-100 to-blue-100", bgColor: "bg-cyan-50" },
   ];
 
   // Mouse tracking for parallax effect
