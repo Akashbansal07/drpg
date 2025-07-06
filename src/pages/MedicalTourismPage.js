@@ -271,8 +271,16 @@ const MedicalTourismPage = () => {
         </section>
 
         {/* Cuisine Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-pink-400 to-rose-400">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <section 
+          className="py-12 sm:py-16 md:py-20 bg-cover bg-center bg-no-repeat relative"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
+          }}
+        >
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center shadow-lg mr-0 sm:mr-4 mb-2 sm:mb-0">
