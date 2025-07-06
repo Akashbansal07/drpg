@@ -5,12 +5,54 @@ import {
   Mail,
   CheckCircle,
   Activity,
-  Award
+  Award,
+  X,
+  ChevronDown,
+  Shield
 } from 'lucide-react';
+
+// Import countries data (assuming you have this file)
+// import { countries, defaultCountry } from './countries.js';
+
+// Countries data (simplified version - you can replace with your full countries file)
+const countries = [
+  { code: 'US', name: 'United States', flag: '🇺🇸', phoneCode: '+1' },
+  { code: 'IN', name: 'India', flag: '🇮🇳', phoneCode: '+91' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', phoneCode: '+44' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦', phoneCode: '+1' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺', phoneCode: '+61' },
+  { code: 'AE', name: 'UAE', flag: '🇦🇪', phoneCode: '+971' },
+  { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', phoneCode: '+966' },
+  { code: 'BD', name: 'Bangladesh', flag: '🇧🇩', phoneCode: '+880' },
+  { code: 'PK', name: 'Pakistan', flag: '🇵🇰', phoneCode: '+92' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬', phoneCode: '+234' },
+];
+
+const defaultCountry = countries[1]; // India
 
 const HospitalsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedHospital, setSelectedHospital] = useState(null);
   const sectionRef = useRef(null);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    gender: '',
+    email: '',
+    phone: '',
+    country: '',
+    medicalProblem: ''
+  });
+
+  // Country selector state
+  const [selectedCountry, setSelectedCountry] = useState(defaultCountry);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [countrySearchTerm, setCountrySearchTerm] = useState('');
+
+  const countryDropdownRef = useRef(null);
 
   const hospitals = [
     {
@@ -66,8 +108,31 @@ const HospitalsPage = () => {
       established: "2012",
       description: "Compassionate care with modern medical facilities and experienced healthcare team.",
       color: "from-pink-500 to-rose-500"
+    },
+    {
+      id: 7,
+      name: "Narayana Health",
+      location: "Gurugram",
+      image: "https://content.jdmagicbox.com/v2/comp/bangalore/x4/080PXX80.XX80.160511174017.Z4X4/catalogue/narayana-health-city-bommasandra-industrial-area-bangalore-ent-doctors-2rf7dcp.jpg",
+      established: "2008",
+      description: "Leading healthcare provider with comprehensive medical services and advanced treatments.",
+      color: "from-pink-600 to-rose-600"
     }
   ];
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
+        setIsCountryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Intersection Observer
   useEffect(() => {
@@ -90,6 +155,108 @@ const HospitalsPage = () => {
       }
     };
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSendInquiry = (hospital) => {
+    setSelectedHospital(hospital);
+    setShowPopup(true);
+    // Prevent body scroll when popup is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelectedHospital(null);
+    // Reset form
+    setFormData({
+      name: '',
+      age: '',
+      gender: '',
+      email: '',
+      phone: '',
+      country: '',
+      medicalProblem: ''
+    });
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleSubmit = async () => {
+    // Validation
+    if (!formData.name || !formData.age || !formData.gender || !formData.email || !formData.phone || !formData.country || !formData.medicalProblem) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    // Include selected country phone code with the phone number and hospital info
+    const formDataWithCountry = {
+      ...formData,
+      phone: `${selectedCountry.phoneCode} ${formData.phone}`,
+      selectedCountry: selectedCountry.name,
+      timestamp: new Date().toLocaleString(),
+      hospitalName: selectedHospital?.name || '',
+      hospitalLocation: selectedHospital?.location || '',
+      formType: 'Hospital Inquiry' // To distinguish from home page form
+    };
+
+    try {
+      // Create a hidden form and submit it (this bypasses CORS completely)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://script.google.com/macros/s/AKfycbxPb38FiOhoVaEHTAxYuNxId9-4ykqzoANuFxrdnyAcPYk3eDTc8Q0YdYsd0CbXNzPiag/exec';
+      form.target = 'hidden_iframe_hospital';
+      form.style.display = 'none';
+
+      // Create hidden iframe to catch the response
+      let iframe = document.getElementById('hidden_iframe_hospital');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'hidden_iframe_hospital';
+        iframe.name = 'hidden_iframe_hospital';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      // Add form data as hidden inputs
+      Object.keys(formDataWithCountry).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = formDataWithCountry[key];
+        form.appendChild(input);
+      });
+
+      // Add form to page and submit
+      document.body.appendChild(form);
+      form.submit();
+      
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(form);
+      }, 1000);
+
+      // Show success message and close popup
+      alert('Thank you! We will contact you soon regarding your inquiry.');
+      closePopup();
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your form. Please try again.');
+    }
+  };
+
+  // Filter countries based on search term
+  const filteredCountries = countries.filter(country =>
+    country.name.toLowerCase().includes(countrySearchTerm.toLowerCase()) ||
+    country.phoneCode.includes(countrySearchTerm)
+  );
 
   const HospitalCard = ({ hospital, index }) => {
     return (
@@ -127,7 +294,10 @@ const HospitalsPage = () => {
 
             {/* Action Button */}
             <div>
-              <button className="w-full py-2 px-6 rounded-xl font-medium border-2 border-pink-300 text-pink-600 hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+              <button 
+                onClick={() => handleSendInquiry(hospital)}
+                className="w-full py-2 px-6 rounded-xl font-medium border-2 border-pink-300 text-pink-600 hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+              >
                 <Mail className="w-4 h-4 mr-2" />
                 Send Inquiry
               </button>
@@ -237,6 +407,219 @@ const HospitalsPage = () => {
           </div>
         </section>
       </div>
+
+      {/* Popup Form */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={closePopup}
+              className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10"
+            >
+              <X className="w-4 h-4 text-gray-600" />
+            </button>
+
+            {/* Form Header */}
+            <div className="bg-gradient-to-r from-pink-500 to-rose-500 p-6 rounded-t-2xl">
+              <h2 className="text-xl font-bold text-white mb-2">Send Inquiry</h2>
+              <p className="text-pink-100 text-sm">
+                {selectedHospital?.name} - {selectedHospital?.location}
+              </p>
+            </div>
+
+            {/* Form Content */}
+            <div className="p-6">
+              <div className="space-y-4">
+                {/* Name Field */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    Name <span className="text-pink-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none"
+                    placeholder="Full name"
+                    required
+                  />
+                </div>
+
+                {/* Age and Gender */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                      Age <span className="text-pink-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none"
+                      placeholder="Age"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                      Gender <span className="text-pink-500">*</span>
+                    </label>
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none bg-white"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    Email <span className="text-pink-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none"
+                    placeholder="Email address"
+                    required
+                  />
+                </div>
+
+                {/* Phone Field with Country Selector */}
+                <div className="relative">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    WhatsApp <span className="text-pink-500">*</span>
+                  </label>
+                  <div className="relative flex">
+                    {/* Country Selector */}
+                    <div className="relative" ref={countryDropdownRef}>
+                      <button
+                        type="button"
+                        onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                        className="flex items-center px-3 py-2 text-sm rounded-l-lg border-2 border-pink-100 border-r-0 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none bg-white min-w-[80px]"
+                      >
+                        <span className="mr-1">{selectedCountry.flag}</span>
+                        <span className="text-xs font-medium mr-1">{selectedCountry.phoneCode}</span>
+                        <ChevronDown className="w-3 h-3 text-gray-400" />
+                      </button>
+                      
+                      {/* Country Dropdown */}
+                      {isCountryDropdownOpen && (
+                        <div className="absolute top-full left-0 w-72 bg-white border border-pink-200 rounded-lg shadow-2xl z-[9999] max-h-60 overflow-hidden">
+                          {/* Search Input */}
+                          <div className="p-2 border-b border-pink-100">
+                            <input
+                              type="text"
+                              placeholder="Search countries..."
+                              value={countrySearchTerm}
+                              onChange={(e) => setCountrySearchTerm(e.target.value)}
+                              className="w-full px-2 py-1 text-xs border border-pink-200 rounded outline-none focus:border-pink-400"
+                            />
+                          </div>
+                          
+                          {/* Country List */}
+                          <div className="max-h-48 overflow-y-auto">
+                            {filteredCountries.map((country) => (
+                              <button
+                                key={country.code}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedCountry(country);
+                                  setIsCountryDropdownOpen(false);
+                                  setCountrySearchTerm('');
+                                }}
+                                className="w-full flex items-center px-3 py-2 text-xs hover:bg-pink-50 transition-colors duration-200 text-left"
+                              >
+                                <span className="mr-2">{country.flag}</span>
+                                <span className="flex-1 text-gray-700">{country.name}</span>
+                                <span className="text-gray-500 font-medium">{country.phoneCode}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Phone Number Input */}
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="flex-1 px-3 py-2 text-sm rounded-r-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none"
+                      placeholder="WhatsApp number"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Country Field */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    Country <span className="text-pink-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none"
+                    placeholder="Your country"
+                    required
+                  />
+                </div>
+
+                {/* Medical Problem Field */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    Medical Problem <span className="text-pink-500">*</span>
+                  </label>
+                  <textarea
+                    name="medicalProblem"
+                    value={formData.medicalProblem}
+                    onChange={handleInputChange}
+                    rows="3"
+                    className="w-full px-3 py-2 text-sm rounded-lg border-2 border-pink-100 focus:border-pink-400 focus:ring-1 focus:ring-pink-100 transition-all duration-200 outline-none resize-none"
+                    placeholder="Describe your medical condition..."
+                    required
+                  ></textarea>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-3 px-4 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:ring-2 focus:ring-pink-200 outline-none active:scale-95 flex items-center justify-center mt-6"
+                >
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Send Inquiry
+                </button>
+              </div>
+
+              <div className="mt-4 text-center">
+                <p className="text-xs text-gray-500 flex items-center justify-center">
+                  <Shield className="w-3 h-3 mr-1" />
+                  Privacy protected
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
