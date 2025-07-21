@@ -126,10 +126,10 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         {/* Mobile Navigation with Animation */}
         <div className={`md:hidden transition-all duration-500 ease-in-out ${
           isMobileMenuOpen 
-            ? 'max-h-96 opacity-100 translate-y-0' 
+            ? 'max-h-[600px] opacity-100 translate-y-0' 
             : 'max-h-0 opacity-0 -translate-y-4'
         } overflow-hidden`}>
-          <div className="px-2 pt-4 pb-6 space-y-2 bg-gradient-to-b from-pink-50 to-white rounded-2xl mt-2 border border-pink-100 shadow-lg">
+          <div className="px-2 pt-4 pb-6 space-y-2 bg-gradient-to-b from-pink-50 to-white rounded-2xl mt-2 border border-pink-100 shadow-lg max-h-[calc(100vh-120px)] overflow-y-auto">
             {navItems.map((item, index) => {
               const IconComponent = item.icon;
               return (

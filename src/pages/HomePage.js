@@ -411,7 +411,7 @@ const HomePage = () => {
                 <p className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light text-pink-100 drop-shadow-md transition-all duration-1200 delay-400 ${
                   contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}>
-                  Healthy life make your life happy
+                  For Healthy and Happy Life 
                 </p>
                 <p className={`text-xs sm:text-sm lg:text-base text-pink-200 max-w-md mx-auto lg:mx-0 leading-relaxed drop-shadow-sm transition-all duration-1200 delay-600 ${
                   contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
