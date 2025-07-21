@@ -20,7 +20,6 @@ import {
 const TermsOfServicePage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('nature');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -43,6 +42,17 @@ const TermsOfServicePage = () => {
       }
     };
   }, []);
+
+  const handleSectionClick = (sectionId) => {
+    setActiveSection(sectionId);
+    // Find the section element and scroll to it
+    const element = document.getElementById(`section-${sectionId}`);
+    if (element) {
+      const yOffset = -100; // Offset to account for fixed header
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   const sections = [
     {
@@ -206,7 +216,7 @@ const TermsOfServicePage = () => {
                     return (
                       <button
                         key={section.id}
-                        onClick={() => setActiveSection(section.id)}
+                        onClick={() => handleSectionClick(section.id)}
                         className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 flex items-center ${
                           activeSection === section.id
                             ? 'bg-pink-500 text-white shadow-md'
@@ -225,31 +235,6 @@ const TermsOfServicePage = () => {
             {/* Content Area */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-xl shadow-lg p-8">
-                {/* Agreement Notice */}
-                <div className="mb-8 pb-8 border-b border-gray-200">
-                  <div className="bg-pink-50 border border-pink-200 rounded-xl p-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-3">
-                      Legal Agreement
-                    </h2>
-                    <p className="text-gray-700 mb-4">
-                      By accessing or using Dr Purva Global Solutions website and services, you agree to be bound by these Terms & Conditions.
-                    </p>
-                    
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        id="accept-terms"
-                        checked={acceptedTerms}
-                        onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
-                      />
-                      <label htmlFor="accept-terms" className="text-sm text-gray-600 cursor-pointer">
-                        I have read, understood, and agree to be bound by these Terms & Conditions
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Dynamic Section Content */}
                 <div className="space-y-8">
                   {sections.map((section) => {
@@ -257,7 +242,7 @@ const TermsOfServicePage = () => {
                     return (
                       <div
                         key={section.id}
-                        id={section.id}
+                        id={`section-${section.id}`}
                         className={`transition-all duration-500 ${
                           activeSection === section.id ? 'opacity-100' : 'opacity-40'
                         }`}
@@ -275,7 +260,7 @@ const TermsOfServicePage = () => {
                           <ul className="space-y-3">
                             {section.content.points.map((point, index) => (
                               <li key={index} className="flex items-start">
-                                <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                                <span className="text-pink-500 mr-3 font-bold">•</span>
                                 <span className="text-gray-600 text-sm">{point}</span>
                               </li>
                             ))}
