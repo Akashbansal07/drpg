@@ -117,13 +117,10 @@ const Footer = ({ setCurrentPage }) => {
                   <div className="text-pink-100 text-xs sm:text-sm">
                     <p>Dr Purva Global Solutions</p>
                     <p>(Unit of Billion Plus Enterprises)</p>
-                    <p>5th Floor, DLF Two Horizon Centre,</p>
-                    <p>DLF Phase 5, Sector 43,</p>
-                    <p>Gurugram, Haryana 122002</p>
+                    <p>Sector 14,</p>
+                    <p>Gurugram, Haryana 122001</p>
                   </div>
                 </div>
-
-                
 
                 <div className="flex items-center space-x-2">
                   <Mail className="w-3 sm:w-4 h-3 sm:h-4 text-pink-300 flex-shrink-0" />
@@ -148,13 +145,13 @@ const Footer = ({ setCurrentPage }) => {
             </p>
             <div className="flex flex-wrap justify-center sm:justify-end space-x-3 sm:space-x-4 text-xs">
               <button 
-                onClick={() => handleNavigation('about-us')}
+                onClick={() => handleNavigation('privacy-policy')}
                 className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Privacy Policy
               </button>
               <button 
-                onClick={() => handleNavigation('about-us')}
+                onClick={() => handleNavigation('terms-of-service')}
                 className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Terms of Service

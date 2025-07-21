@@ -72,13 +72,13 @@ const AboutUsPage = () => {
     },
     {
       icon: Users,
-      number: "5000+",
+      number: "10,000+",
       label: "Patients Treated"
     },
     {
       icon: Award,
-      number: "3",
-      label: "Specialized Clinics"
+      number: "5",
+      label: "Organizations Led"
     },
     {
       icon: Heart,
@@ -115,27 +115,84 @@ const AboutUsPage = () => {
     {
       position: "Founder & Head",
       organization: "Dr. Purva Global Solutions",
-      current: true
+      current: true,
+      duration: "Current",
+      location: "Gurgaon, India",
+      responsibilities: []
+    },
+    {
+      position: "Founder & Head",
+      organization: "Dr. Purva Physiotherapy and Rehabilitation Clinic",
+      current: true,
+      duration: "Current",
+      location: "Gurgaon, India",
+      responsibilities: []
     },
     {
       position: "Head of Department",
-      organization: "Yes Plus Pain Management Clinic",
-      current: true
+      organization: "Post-Surgery Rehabilitation Services",
+      current: true,
+      duration: "Aug 2018 - Present",
+      years: "7 yrs",
+      location: "Gurgaon, Haryana, India",
+      responsibilities: [
+        "Own the proposal process to onboard doctors and hospitals for post-surgery physiotherapy",
+        "Own relationship with key surgeons in orthopedics, gynecology, general surgery, neurology etc.",
+        "Administrative responsibilities to manage team of physiotherapists for delivering quality treatment"
+      ],
+      skills: ["Leadership", "Team Management"]
     },
     {
       position: "Founder",
-      organization: "Yes Plus Wellness Store",
-      current: true
+      organization: "Yes Plus Wellness Store (associated with TATA 1MG)",
+      current: false,
+      duration: "Jul 2015 - Aug 2018",
+      years: "3 yrs 2 mos",
+      location: "Gurgaon",
+      responsibilities: [
+        "Single handedly managed order fulfillment for Tata 1MG with annual revenue of Rs 4 Cr",
+        "Managed SLA including stringent TAT requirements, optimize inventory, streamlining processes",
+        "Negotiations with supply chain partners including distributors and companies for pharmaceutical products and medical devices",
+        "Relationship management with senior leadership of Tata 1MG for strategic alignment",
+        "Responsible for P&L and operations including order management, procurement, order processing, billing, quality assurance, delivery and return management",
+        "Ensured regulatory and taxation compliance for online pharmacy business",
+        "Expertise in building team including manpower hiring, training and mentoring",
+        "Managed database of pharmaceutical and medical devices for inventory optimization",
+        "Managed Pan-India order fulfillment of Healthkart's Health-Viva product-line"
+      ],
+      skills: ["Team Management", "Operations", "Supply Chain Management"]
     },
     {
-      position: "Head of Department",
-      organization: "Triveni Hospital",
-      current: false
+      position: "Consultant Physiotherapist",
+      organization: "Multiple Corporate Hospitals",
+      current: false,
+      duration: "Jul 2010 - Jul 2015",
+      years: "5 yrs 1 mo",
+      location: "Gurgaon, India",
+      responsibilities: [
+        "Conducted ergonomics workshop for corporates including Accenture, Gurgaon. Performed ergonomics assessment of workstations and recommended design changes",
+        "OPD: Evaluation and management of cases of Frozen shoulders, LBA",
+        "ICU: Evaluation and management of critically ill patients followed by various exercise programs",
+        "CCU: Evaluation and management of critically ill cardiac patients after CABG",
+        "Gyne: Antenatal care and Post natal care to result in a healthy mother and infant"
+      ],
+      skills: ["Clinical Practice", "Ergonomics", "Critical Care", "Patient Management"]
     },
     {
-      position: "Senior Physiotherapist",
-      organization: "Fortis Hospital & Park Hospital",
-      current: false
+      position: "Consultant Physiotherapist",
+      organization: "Fortis Healthcare",
+      current: false,
+      duration: "Jul 2010 - Feb 2012",
+      years: "1 yr 8 mos",
+      location: "Faridabad Area, India",
+      responsibilities: [
+        "Ward Rounds: Bedside clinical evaluation and discussion of patients from various specialties including Neurological, Cardiopulmonary etc.",
+        "Evaluation and management of cases such as CVA, Paralysis, TKR",
+        "ICU Physiotherapy: Chest physiotherapy to keep patients' chest devoid of secretion and lungs aerated to maximum possible",
+        "Limb Physiotherapy to prevent Deep Vein Thrombosis, bed sores and other complications from prolonged hospital stay",
+        "Goals: Prevent accumulation of secretions, improve mobilization and drainage, promote relaxation for better breathing patterns, improve cardiopulmonary exercise tolerance"
+      ],
+      skills: ["ICU Care", "Chest Physiotherapy", "Neurological Rehabilitation"]
     }
   ];
 
@@ -348,43 +405,95 @@ const AboutUsPage = () => {
         {/* Experience & Services Section */}
         <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-pink-50 to-rose-50">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
               
-              {/* Professional Experience */}
-              <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 border border-pink-100">
+              {/* Professional Experience - Full width on smaller screens */}
+              <div className="xl:col-span-2 bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 border border-pink-100">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center">
                   <Trophy className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-pink-500" />
                   Professional Experience
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {experience.map((exp, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className={`w-3 h-3 rounded-full mr-4 mt-2 flex-shrink-0 ${
-                        exp.current ? 'bg-pink-500' : 'bg-gray-300'
-                      }`}></div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800 text-sm sm:text-base">{exp.position}</h4>
-                        <p className="text-gray-600 text-xs sm:text-sm">{exp.organization}</p>
-                        {exp.current && (
-                          <span className="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded-full mt-1">
-                            Current
-                          </span>
-                        )}
+                    <div key={index} className="relative">
+                      <div className="flex items-start">
+                        <div className={`w-3 h-3 rounded-full mr-4 mt-2 flex-shrink-0 ${
+                          exp.current ? 'bg-pink-500' : 'bg-gray-300'
+                        }`}></div>
+                        <div className="flex-1">
+                          <div className="flex flex-wrap items-start justify-between mb-2">
+                            <div className="flex-1 mr-4">
+                              <h4 className="font-semibold text-gray-800 text-sm sm:text-base">{exp.position}</h4>
+                              <p className="text-gray-600 text-xs sm:text-sm">{exp.organization}</p>
+                            </div>
+                            {exp.current && (
+                              <span className="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded-full">
+                                Current
+                              </span>
+                            )}
+                          </div>
+                          
+                          {(exp.duration || exp.location) && (
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-500 mb-2">
+                              {exp.duration && (
+                                <span className="flex items-center">
+                                  <Calendar className="w-3 h-3 mr-1" />
+                                  {exp.duration} {exp.years && `• ${exp.years}`}
+                                </span>
+                              )}
+                              {exp.location && (
+                                <span className="flex items-center">
+                                  <MapPin className="w-3 h-3 mr-1" />
+                                  {exp.location}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                          
+                          {exp.responsibilities && exp.responsibilities.length > 0 && (
+                            <details className="mt-3 cursor-pointer">
+                              <summary className="text-pink-600 text-xs sm:text-sm font-medium hover:text-pink-700 transition-colors">
+                                View responsibilities & achievements
+                              </summary>
+                              <ul className="mt-2 space-y-1 text-xs text-gray-600">
+                                {exp.responsibilities.map((resp, i) => (
+                                  <li key={i} className="flex items-start">
+                                    <span className="text-pink-400 mr-2">•</span>
+                                    <span>{resp}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                              {exp.skills && exp.skills.length > 0 && (
+                                <div className="mt-3 flex flex-wrap gap-1">
+                                  {exp.skills.map((skill, i) => (
+                                    <span key={i} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">
+                                      {skill}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </details>
+                          )}
+                        </div>
                       </div>
+                      
+                      {index < experience.length - 1 && (
+                        <div className="absolute left-[6px] top-8 bottom-0 w-[1px] bg-gray-200"></div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Services */}
-              <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 border border-pink-100">
+              <div className="xl:col-span-2 bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 border border-pink-100">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center">
                   <Activity className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-pink-500" />
                   Specialized Services
                 </h3>
                 
-                <div className="grid grid-cols-1 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {services.map((service, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />

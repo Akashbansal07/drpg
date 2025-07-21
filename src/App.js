@@ -8,6 +8,8 @@ import PatientJourneyPage from './pages/PatientJourneyPage';
 import RehabPage from './pages/RehabPage';
 import PricingPage from './pages/PricingPage';
 import AboutUsPage from './pages/AboutUsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -36,6 +38,10 @@ function App() {
         return <PricingPage />;
       case 'about-us':
         return <AboutUsPage />;
+      case 'privacy-policy':
+        return <PrivacyPolicyPage />;
+      case 'terms-of-service':
+        return <TermsOfServicePage />;
       default:
         return <HomePage />;
     }
