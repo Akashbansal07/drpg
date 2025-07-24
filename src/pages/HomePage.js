@@ -77,6 +77,20 @@ const TopHospitalsSection = () => {
       location: "Gurugram",
       image: "https://content.jdmagicbox.com/v2/comp/bangalore/x4/080PXX80.XX80.160511174017.Z4X4/catalogue/narayana-health-city-bommasandra-industrial-area-bangalore-ent-doctors-2rf7dcp.jpg",
       established: "2008"
+    },
+    {
+      id: 8,
+      name: "Paras Hospital",
+      location: "Gurugram",
+      image: "https://parashospitals-web.s3.ap-south-1.amazonaws.com/achievements/March2023/kaVePC4NinlrHbSskToe.jpg",
+      established: "2006"
+    },
+    {
+      id: 9,
+      name: "Artemis Hospital",
+      location: "Gurugram",
+      image: "https://www.artemishospitals.com/assets/images/artemis-hospital.jpg",
+      established: "2007"
     }
   ];
 

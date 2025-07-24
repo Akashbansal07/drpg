@@ -117,6 +117,24 @@ const HospitalsPage = () => {
       established: "2008",
       description: "Leading healthcare provider with comprehensive medical services and advanced treatments.",
       color: "from-pink-600 to-rose-600"
+    },
+    {
+      id: 8,
+      name: "Paras Hospital",
+      location: "Gurugram",
+      image: "https://parashospitals-web.s3.ap-south-1.amazonaws.com/achievements/March2023/kaVePC4NinlrHbSskToe.jpg",
+      established: "2006",
+      description: "Modern healthcare facility with advanced diagnostic and treatment capabilities.",
+      color: "from-pink-700 to-rose-600"
+    },
+    {
+      id: 9,
+      name: "Artemis Hospital",
+      location: "Gurugram",
+      image: "https://www.artemishospitals.com/assets/images/artemis-hospital.jpg",
+      established: "2007",
+      description: "Modern healthcare facility with advanced diagnostic and treatment capabilities.",
+      color: "from-pink-700 to-rose-600"
     }
   ];
 
