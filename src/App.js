@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import GetQuoteButton from './components/GetQuoteButton'; // Add this import
+import GetQuoteButton from './components/GetQuoteButton';
 import HomePage from './pages/HomePage';
 import HospitalsPage from './pages/HospitalsPage';
 import MedicalTourismPage from './pages/MedicalTourismPage';
@@ -9,6 +9,7 @@ import PatientJourneyPage from './pages/PatientJourneyPage';
 import RehabPage from './pages/RehabPage';
 import PricingPage from './pages/PricingPage';
 import AboutUsPage from './pages/AboutUsPage';
+import ContactUsPage from './pages/ContactUsPage'; // Add this import
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 
@@ -39,6 +40,8 @@ function App() {
         return <PricingPage />;
       case 'about-us':
         return <AboutUsPage />;
+      case 'contact-us':
+        return <ContactUsPage />; // Add this case
       case 'privacy-policy':
         return <PrivacyPolicyPage />;
       case 'terms-of-service':

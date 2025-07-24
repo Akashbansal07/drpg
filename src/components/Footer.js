@@ -28,7 +28,8 @@ const Footer = ({ setCurrentPage }) => {
     { id: 'rehab', label: 'Rehab' },
     { id: 'medical-tourism', label: 'Local Tourism' },
     { id: 'patient-journey', label: 'Patient Journey' },
-    { id: 'about-us', label: 'About Us' }
+    { id: 'about-us', label: 'About Us' },
+    { id: 'contact-us', label: 'Contact Us' }
   ];
 
   const socialLinks = [
