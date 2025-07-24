@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import GetQuoteButton from './components/GetQuoteButton'; // Add this import
 import HomePage from './pages/HomePage';
 import HospitalsPage from './pages/HospitalsPage';
 import MedicalTourismPage from './pages/MedicalTourismPage';
@@ -54,6 +55,9 @@ function App() {
         {renderPage()}
       </main>
       <Footer setCurrentPage={setCurrentPage} />
+      
+      {/* Add the Get Quote Button component */}
+      <GetQuoteButton />
     </div>
   );
 }
