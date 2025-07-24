@@ -24,7 +24,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
     { id: 'medical-tourism', label: 'Local Tourism', icon: Plane },
     { id: 'patient-journey', label: 'Patient Journey', icon: Route },
     { id: 'about-us', label: 'About Us', icon: Users },
-    { id: 'contact-us', label: 'Contact', icon: Phone }
+    { id: 'contact-us', label: 'Contact us', icon: Phone }
   ];
 
   // Navbar entrance animation
