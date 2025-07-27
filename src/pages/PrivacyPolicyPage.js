@@ -265,7 +265,7 @@ const PrivacyPolicyPage = () => {
                         <MapPin className="w-5 h-5 text-pink-500 mr-3 flex-shrink-0" />
                         <div>
                           <p className="font-semibold text-gray-700">BILLION PLUS ENTERPRISES</p>
-                          <p className="text-gray-600">617 Sector 14, Gurgaon, Haryana 122001</p>
+                          <p className="text-gray-600"> Sector 14, Gurgaon, Haryana 122001</p>
                         </div>
                       </div>
                       
