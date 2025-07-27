@@ -167,7 +167,7 @@ const Footer = ({ setCurrentPage }) => {
                 Terms of Service
               </button>
               <button 
-                onClick={() => handleNavigation('patient-journey')}
+                onClick={() => handleNavigation('contact-us')}
                 className="text-pink-200 hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Support
