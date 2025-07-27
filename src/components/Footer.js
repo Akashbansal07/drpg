@@ -6,7 +6,9 @@ import {
   Mail, 
   Stethoscope,
   Linkedin,
-  Youtube
+  Youtube,
+  Facebook,
+  Instagram
 } from 'lucide-react';
 
 // Custom X (formerly Twitter) logo component
@@ -33,9 +35,36 @@ const Footer = ({ setCurrentPage }) => {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, color: 'hover:bg-blue-700', label: 'LinkedIn' },
-    { icon: Youtube, color: 'hover:bg-red-600', label: 'YouTube' },
-    { icon: XLogo, color: 'hover:bg-gray-800', label: 'X' }
+    { 
+      icon: Facebook, 
+      color: 'hover:bg-blue-600', 
+      label: 'Facebook',
+      url: 'https://www.facebook.com/profile.php?id=61578662107153'
+    },
+    { 
+      icon: Instagram, 
+      color: 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500', 
+      label: 'Instagram',
+      url: 'https://www.instagram.com/drpurvaglobal/'
+    },
+    { 
+      icon: Linkedin, 
+      color: 'hover:bg-blue-700', 
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/company/dr-purva-global-solutions/'
+    },
+    { 
+      icon: Youtube, 
+      color: 'hover:bg-red-600', 
+      label: 'YouTube',
+      url: 'https://www.youtube.com/@DrPurvaGlobal'
+    },
+    { 
+      icon: XLogo, 
+      color: 'hover:bg-gray-800', 
+      label: 'X (Twitter)',
+      url: 'https://x.com/DrPurvaGlobal'
+    }
   ];
 
   const handleNavigation = (pageId) => {
@@ -45,6 +74,10 @@ const Footer = ({ setCurrentPage }) => {
       top: 0,
       behavior: 'smooth'
     });
+  };
+
+  const handleSocialClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -75,16 +108,23 @@ const Footer = ({ setCurrentPage }) => {
             </p>
 
             {/* Social Media */}
-            <div className="flex space-x-2 sm:space-x-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
                 return (
                   <button
                     key={index}
-                    className={`w-8 sm:w-10 h-8 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg ${social.color} group`}
+                    onClick={() => handleSocialClick(social.url)}
+                    className={`w-8 sm:w-10 h-8 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg ${social.color} group relative overflow-hidden`}
                     aria-label={social.label}
+                    title={social.label}
                   >
-                    <IconComponent className="w-3 sm:w-4 h-3 sm:h-4 text-white group-hover:scale-110 transition-transform duration-300" />
+                    <IconComponent className="w-3 sm:w-4 h-3 sm:h-4 text-white group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                    
+                    {/* Special Instagram gradient background */}
+                    {social.label === 'Instagram' && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                    )}
                   </button>
                 );
               })}
