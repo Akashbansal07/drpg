@@ -48,7 +48,6 @@ const EnhancedMedicalServicesSection = () => {
     { id: 2, name: "Neurology", icon: icon2, color: "from-blue-100 to-cyan-100", bgColor: "bg-blue-50" },
     { id: 5, name: "Gynecology", icon: icon5, color: "from-indigo-100 to-purple-100", bgColor: "bg-indigo-50" },
     { id: 10, name: "Orthopedics", icon: icon10, color: "from-teal-100 to-cyan-100", bgColor: "bg-teal-50" },
-     
     { id: 1, name: "Weight Loss Surgery", icon: icon1, color: "from-purple-100 to-pink-100", bgColor: "bg-purple-50" },
     { id: 3, name: "IVF & Fertility", icon: icon3, color: "from-green-100 to-emerald-100", bgColor: "bg-green-50" },
     { id: 4, name: "Cosmetic Surgery", icon: icon4, color: "from-pink-100 to-rose-100", bgColor: "bg-pink-50" },
@@ -255,7 +254,7 @@ const EnhancedMedicalServicesSection = () => {
           </div>
         </div>
 
-        {/* Medical Treatments Section - Two Columns with Enhanced Scroll Animation */}
+        {/* Medical Treatments Section - Three Columns Layout */}
         <div className={`transition-all duration-1000 transform ${
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'
         }`}>
@@ -282,8 +281,8 @@ const EnhancedMedicalServicesSection = () => {
             </div>
           </div>
           
-          {/* Medical Treatments Grid - Two Columns with Staggered Animation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-16 sm:mb-20">
+          {/* Medical Treatments Grid - Three Columns Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-16 sm:mb-20">
             {medicalTreatments.map((treatment, index) => (
               <ClassicServiceCard
                 key={treatment.id}
