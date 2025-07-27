@@ -17,7 +17,7 @@ import { countries, defaultCountry } from './countries.js';
 
 // Import the Enhanced Medical Services Component
 import EnhancedMedicalServicesSection from './EnhancedMedicalServicesSection';
-
+import TestimonialSection from './TestimonialSection.js';
 // Import the Doctors Section Component
 import DoctorsSection from './DoctorsSection';
 
@@ -671,7 +671,7 @@ const HomePage = () => {
 
       {/* Doctors Section */}
       <DoctorsSection />
-
+      <TestimonialSection/>
       {/* Enhanced Medical Services Section - NEW COMPONENT WITH ANIMATIONS */}
       <EnhancedMedicalServicesSection />
     </div>
