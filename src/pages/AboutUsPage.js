@@ -337,7 +337,7 @@ const AboutUsPage = () => {
                   <div className="relative">
                     <div className="bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl">
                       <img
-                        src="https://drpurvaglobal.com/wp-content/uploads/2025/05/Purva-pic-3-2048x1171.jpg"
+                        src="https://drpurvaglobal.com/wp-content/uploads/2025/06/Purva-pic-3-1-1024x585.jpg"
                         alt="Dr. Purva Gupta"
                         className="w-full rounded-xl sm:rounded-2xl shadow-lg transition-transform duration-700 hover:scale-105"
                         onError={(e) => {
