@@ -72,19 +72,61 @@ const GallerySection = () => {
     };
   }, []);
 
-  // Remove auto-rotate functionality - only manual navigation
+  // Auto-rotate gallery
+  useEffect(() => {
+    if (isVisible) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 4000); // Change every 4 seconds
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isVisible, galleryImages.length]);
 
   // Manual navigation functions
   const goToPrevious = () => {
     setCurrentIndex(currentIndex === 0 ? galleryImages.length - 1 : currentIndex - 1);
+    // Reset auto-rotation
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 4000);
+    }
   };
 
   const goToNext = () => {
     setCurrentIndex(currentIndex === galleryImages.length - 1 ? 0 : currentIndex + 1);
+    // Reset auto-rotation
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 4000);
+    }
   };
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
+    // Reset auto-rotation
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 4000);
+    }
   };
 
   // Get visible images for desktop (3 at a time)
