@@ -34,6 +34,8 @@ import icon13 from '../utils/13.png';
 import icon14 from '../utils/14.png';
 import icon15 from '../utils/15.png';
 import icon16 from '../utils/16.png';
+import icon17 from '../utils/17.png';
+import icon18 from '../utils/18.png';
 
 // Enhanced Medical Services Section Component with Classic Animations
 const EnhancedMedicalServicesSection = () => {
@@ -53,6 +55,8 @@ const EnhancedMedicalServicesSection = () => {
     { id: 4, name: "Cosmetic Surgery", icon: icon4, color: "from-pink-100 to-rose-100", bgColor: "bg-pink-50" },
     { id: 6, name: "Bone Marrow Transplant", icon: icon6, color: "from-red-100 to-pink-100", bgColor: "bg-red-50" },
     { id: 7, name: "Kidney & Liver Transplant", icon: icon7, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
+    { id: 8, name: "Dental Services", icon: icon18, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
+    { id: 9, name: "Hair transplant", icon: icon17, color: "from-orange-100 to-red-100", bgColor: "bg-orange-50" },
   ];
 
   const comprehensiveServices = [
