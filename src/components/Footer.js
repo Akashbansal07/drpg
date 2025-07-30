@@ -99,7 +99,7 @@ const Footer = ({ setCurrentPage }) => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-white">Dr Purva Global</h3>
-                <p className="text-pink-200 text-xs sm:text-sm">Fearless Healthcare</p>
+                <p className="text-pink-200 text-xs sm:text-sm">Fearless Surgeries</p>
               </div>
             </div>
             

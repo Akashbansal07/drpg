@@ -421,7 +421,7 @@ const HomePage = () => {
                   contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}>
                   <span className="text-white drop-shadow-lg">Fearless</span>
-                  <span className="block text-pink-200 animate-pulse drop-shadow-lg">Healthcare</span>
+                  <span className="block text-pink-200 animate-pulse drop-shadow-lg">Surgeries</span>
                 </h1>
                 <p className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light text-pink-100 drop-shadow-md transition-all duration-1200 delay-400 ${
                   contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'

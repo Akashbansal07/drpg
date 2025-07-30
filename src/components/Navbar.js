@@ -63,7 +63,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   Dr Purva Global
                 </div>
                 <div className="text-xs text-pink-500 font-medium -mt-1">
-                  Fearless Healthcare
+                  Fearless Surgeries
                 </div>
               </div>
             </div>
