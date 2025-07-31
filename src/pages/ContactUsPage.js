@@ -9,6 +9,8 @@ import {
   Globe,
   Linkedin,
   Youtube,
+  Facebook,
+  Instagram,
   CheckCircle,
   AlertCircle,
   HelpCircle,
@@ -73,11 +75,43 @@ const ContactUsPage = () => {
     }
   ];
 
+  // Updated social links to match Footer component exactly
   const socialLinks = [
-    { icon: Linkedin, name: 'LinkedIn', color: 'hover:bg-blue-700', url: '#' },
-    { icon: Youtube, name: 'YouTube', color: 'hover:bg-red-600', url: '#' },
-    { icon: XLogo, name: 'X (Twitter)', color: 'hover:bg-gray-800', url: '#' }
+    { 
+      icon: Facebook, 
+      name: 'Facebook',
+      color: 'hover:bg-blue-600', 
+      url: 'https://www.facebook.com/profile.php?id=61578662107153'
+    },
+    { 
+      icon: Instagram, 
+      name: 'Instagram',
+      color: 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500', 
+      url: 'https://www.instagram.com/drpurvaglobal/'
+    },
+    { 
+      icon: Linkedin, 
+      name: 'LinkedIn',
+      color: 'hover:bg-blue-700', 
+      url: 'https://www.linkedin.com/company/dr-purva-global-solutions/'
+    },
+    { 
+      icon: Youtube, 
+      name: 'YouTube',
+      color: 'hover:bg-red-600', 
+      url: 'https://www.youtube.com/@DrPurvaGlobal'
+    },
+    { 
+      icon: XLogo, 
+      name: 'X (Twitter)',
+      color: 'hover:bg-gray-800', 
+      url: 'https://x.com/DrPurvaGlobal'
+    }
   ];
+
+  const handleSocialClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50">
@@ -194,25 +228,31 @@ const ContactUsPage = () => {
             <div className={`xl:col-span-1 space-y-6 transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              {/* Social Media */}
+              {/* Social Media - Updated to match Footer */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Connect With Us</h3>
                 <p className="text-sm text-gray-600 mb-6">
                   Follow us for updates and health tips
                 </p>
                 
-                <div className="flex justify-center space-x-4">
+                <div className="flex justify-center flex-wrap gap-3">
                   {socialLinks.map((social, index) => {
                     const IconComponent = social.icon;
                     return (
-                      <a
+                      <button
                         key={index}
-                        href={social.url}
-                        className={`w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg ${social.color} group`}
+                        onClick={() => handleSocialClick(social.url)}
+                        className={`w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg ${social.color} group relative overflow-hidden`}
                         aria-label={social.name}
+                        title={social.name}
                       >
-                        <IconComponent className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors duration-300" />
-                      </a>
+                        <IconComponent className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors duration-300 relative z-10" />
+                        
+                        {/* Special Instagram gradient background */}
+                        {social.name === 'Instagram' && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                        )}
+                      </button>
                     );
                   })}
                 </div>
