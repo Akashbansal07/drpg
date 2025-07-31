@@ -273,17 +273,19 @@ const DoctorsSection = () => {
         <div className={`text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <div className="flex flex-col sm:flex-row items-center justify-center mb-3 sm:mb-4">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg mr-0 sm:mr-4 mb-2 sm:mb-0">
-              <User className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-pulse" />
-            </div>
-            <div className="text-center sm:text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent">
-                Meet Our Expert Doctors
-              </h2>
-              <p className="text-pink-600 font-medium mt-1 text-sm sm:text-base">World-Class Medical Professionals</p>
-            </div>
-          </div>
+          <div className="flex flex-col items-center justify-center mb-3 sm:mb-4">
+      <div className="flex items-center">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg mr-3 sm:mr-4">
+          <User className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-pulse" />
+        </div>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent">
+          Meet Our Expert Doctors
+        </h2>
+      </div>
+      <p className="text-pink-600 font-medium mt-1 text-sm sm:text-base text-center">
+        World-Class Medical Professionals
+      </p>
+    </div>
           <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed px-4">
             Our team of highly qualified and experienced doctors are dedicated to providing you with 
             exceptional medical care using the latest technologies and treatment methods.
