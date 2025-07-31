@@ -142,7 +142,7 @@ const TopHospitalsSection = () => {
               <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-pulse" />
             </div>
             <div className="text-center sm:text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent">
+              <h2 className="text-2xl pb-4 sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent">
                 Top Partner Hospitals
               </h2>
               <p className="text-pink-600 font-medium mt-1 text-sm sm:text-base">Excellence in Healthcare</p>
