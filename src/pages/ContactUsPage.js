@@ -274,22 +274,33 @@ const ContactUsPage = () => {
           </div>
 
           {/* Call to Action Section */}
-          <div className={`mt-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl p-10 text-center text-white transition-all duration-1000 ${
+          <div className={`mt-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl p-6 sm:p-8 lg:p-10 text-center text-white transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-lg mb-6 text-pink-100">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p className="text-base sm:text-lg mb-6 text-pink-100 px-4">
               Click the "Get Quote Now" button to fill out our consultation form
             </p>
-            <div className="flex items-center justify-center space-x-2">
-              <MessageSquare className="w-6 h-6" />
-              <span className="text-lg font-medium">Or email us directly at </span>
-              <a 
-                href="mailto:info@drpurvaglobal.com"
-                className="text-lg font-medium text-pink-100 hover:text-white underline hover:no-underline transition-all duration-300 hover:scale-105"
-              >
-                info@drpurvaglobal.com
-              </a>
+            
+            {/* Better mobile layout with proper line breaks */}
+            <div className="flex flex-col items-center justify-center gap-2 px-4">
+              {/* First line: Icon + "Or email us directly at" */}
+              <div className="flex items-center justify-center gap-2">
+                <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                <span className="text-base sm:text-lg font-medium whitespace-nowrap">Or email us directly at</span>
+              </div>
+              
+              {/* Second line: Email address only */}
+              <div className="flex items-center justify-center">
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&to=info@drpurvaglobal.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base sm:text-lg font-medium text-pink-100 hover:text-white underline hover:no-underline transition-all duration-300 hover:scale-105"
+                >
+                  info@drpurvaglobal.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
