@@ -283,7 +283,13 @@ const ContactUsPage = () => {
             </p>
             <div className="flex items-center justify-center space-x-2">
               <MessageSquare className="w-6 h-6" />
-              <span className="text-lg font-medium">Or email us directly at info@drpurvaglobal.com</span>
+              <span className="text-lg font-medium">Or email us directly at </span>
+              <a 
+                href="mailto:info@drpurvaglobal.com"
+                className="text-lg font-medium text-pink-100 hover:text-white underline hover:no-underline transition-all duration-300 hover:scale-105"
+              >
+                info@drpurvaglobal.com
+              </a>
             </div>
           </div>
         </div>
