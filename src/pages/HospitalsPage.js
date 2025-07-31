@@ -11,9 +11,6 @@ import {
   Shield
 } from 'lucide-react';
 
-// Import countries data (assuming you have this file)
-// import { countries, defaultCountry } from './countries.js';
-
 // Countries data (simplified version - you can replace with your full countries file)
 const countries = [
   { code: 'US', name: 'United States', flag: '🇺🇸', phoneCode: '+1' },
@@ -278,11 +275,11 @@ const HospitalsPage = () => {
 
   const HospitalCard = ({ hospital, index }) => {
     return (
-      <div className="group transition-all duration-800 transform opacity-100 translate-y-0">
-        <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-pink-100 hover:border-pink-200 transform hover:scale-[1.02] hover:-translate-y-2">
+      <div className="group transition-all duration-800 transform opacity-100 translate-y-0 h-full">
+        <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-pink-100 hover:border-pink-200 transform hover:scale-[1.02] hover:-translate-y-2 h-full flex flex-col">
           
-          {/* Hospital Image */}
-          <div className="relative h-56 overflow-hidden">
+          {/* Hospital Image - Fixed height */}
+          <div className="relative h-48 sm:h-52 md:h-48 lg:h-52 xl:h-56 overflow-hidden flex-shrink-0">
             <img
               src={hospital.image}
               alt={hospital.name}
@@ -296,25 +293,32 @@ const HospitalsPage = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
 
-          {/* Hospital Info */}
-          <div className="p-6">
-            {/* Header */}
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">
-                {hospital.name}
+          {/* Hospital Info - Flexible content area */}
+          <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
+            {/* Header - Fixed height area */}
+            <div className="mb-4 sm:mb-5 lg:mb-6 flex-grow">
+              {/* Hospital Name - Fixed height with line clamping */}
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300 line-clamp-2 min-h-[3.5rem] flex items-start">
+                <span className="leading-tight">{hospital.name}</span>
               </h3>
-              <div className="flex items-center text-gray-600 mb-3">
-                <MapPin className="w-4 h-4 mr-2 text-pink-500" />
-                <span className="font-medium">{hospital.location}</span>
+              
+              {/* Location - Fixed height */}
+              <div className="flex items-center text-gray-600 mb-3 min-h-[1.5rem]">
+                <MapPin className="w-4 h-4 mr-2 text-pink-500 flex-shrink-0" />
+                <span className="font-medium text-sm sm:text-base line-clamp-1">{hospital.location}</span>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">{hospital.description}</p>
+              
+              {/* Description - Fixed height with line clamping */}
+              <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 min-h-[4rem] sm:min-h-[4.5rem]">
+                {hospital.description}
+              </p>
             </div>
 
-            {/* Action Button */}
-            <div>
+            {/* Action Button - Fixed at bottom */}
+            <div className="mt-auto">
               <button 
                 onClick={() => handleSendInquiry(hospital)}
-                className="w-full py-2 px-6 rounded-xl font-medium border-2 border-pink-300 text-pink-600 hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                className="w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl font-medium border-2 border-pink-300 text-pink-600 hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Send Inquiry
@@ -340,7 +344,7 @@ const HospitalsPage = () => {
         
         {/* Hero Section with Background Image */}
         <section 
-          className={`relative py-20 sm:py-24 lg:py-28 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${
+          className={`relative py-16 sm:py-20 lg:py-24 xl:py-28 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
           style={{
@@ -349,14 +353,14 @@ const HospitalsPage = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             
-            <div className="flex items-center justify-center mb-8">
-              <Building2 className="w-12 h-12 text-white mr-4 drop-shadow-lg" />
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+            <div className="flex items-center justify-center mb-6 sm:mb-8">
+              <Building2 className="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 text-white mr-3 sm:mr-4 drop-shadow-lg" />
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white drop-shadow-lg">
                 Partner Hospitals
               </h1>
             </div>
             
-            <p className="text-xl text-pink-100 max-w-4xl mx-auto leading-relaxed mb-12 drop-shadow-md">
+            <p className="text-lg sm:text-xl text-pink-100 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 drop-shadow-md px-4">
               Discover India's premier healthcare facilities where advanced medical technology meets compassionate care. 
               Our partner hospitals are internationally accredited and staffed with world-class specialists.
             </p>
@@ -364,12 +368,13 @@ const HospitalsPage = () => {
         </section>
 
         {/* Spacing between hero and hospital cards */}
-        <div className="py-16"></div>
+        <div className="py-8 sm:py-12 lg:py-16"></div>
 
         {/* Hospitals Grid */}
-        <section className="pb-20 sm:pb-24">
+        <section className="pb-16 sm:pb-20 lg:pb-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Grid with equal height cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {hospitals.map((hospital, index) => (
                 <HospitalCard
                   key={hospital.id}
@@ -382,16 +387,16 @@ const HospitalsPage = () => {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-gradient-to-r from-pink-500 to-rose-500">
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-pink-500 to-rose-500">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
               Why Choose Our Partner Hospitals?
             </h2>
-            <p className="text-pink-100 text-lg mb-16 max-w-2xl mx-auto">
+            <p className="text-pink-100 text-base sm:text-lg mb-12 sm:mb-16 max-w-2xl mx-auto">
               We carefully select hospitals that meet the highest international standards for quality, safety, and patient care.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   icon: Award,
@@ -411,14 +416,14 @@ const HospitalsPage = () => {
               ].map((feature, index) => (
                 <div
                   key={index}
-                  className={`bg-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-700 transform hover:scale-105 hover:bg-white/20 ${
+                  className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 transition-all duration-700 transform hover:scale-105 hover:bg-white/20 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${index * 200 + 800}ms` }}
                 >
-                  <feature.icon className="w-12 h-12 text-white mx-auto mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
-                  <p className="text-pink-100 leading-relaxed">{feature.description}</p>
+                  <feature.icon className="w-10 sm:w-12 h-10 sm:h-12 text-white mx-auto mb-4 sm:mb-6" />
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">{feature.title}</h3>
+                  <p className="text-pink-100 leading-relaxed text-sm sm:text-base">{feature.description}</p>
                 </div>
               ))}
             </div>
